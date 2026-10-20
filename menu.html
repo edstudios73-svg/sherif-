@@ -3,126 +3,142 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#5a0610">
-  <title>Menu &amp; Order · Sherrif's</title>
-  <meta name="description" content="Order Hot & Spicy Waakye, Jollof Rice and Plain Rice from Sherrif's on WhatsApp.">
+  <meta name="theme-color" content="#f4efe6">
+  <title>Menu | Sherrif's</title>
+  <meta name="description" content="Order Hot & Spicy Waakye, Jollof Rice and Plain Rice from Sherrif's in Anyinam for pick-up or delivery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="page-menu">
-  <header class="topbar">
-    <a href="index.html" class="logo">Sherrif's</a>
-    <nav class="desk-nav">
-      <a href="index.html">Home</a>
-      <a href="menu.html" aria-current="page">Menu &amp; Order</a>
-      <a href="book.html">Book an Event</a>
-      <a href="tel:+233535815707" class="btn btn-yellow btn-sm">053 581 5707</a>
-    </nav>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="wordmark">Sherrif's</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="menu.html" aria-current="page">Menu</a>
+        <a href="book.html">Catering</a>
+      </nav>
+      <a href="tel:+233535815707" class="header-call">
+        <svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>
+        <span>053 581 5707</span>
+      </a>
+    </div>
   </header>
 
   <main>
-    <section class="page-head">
-      <p class="eyebrow">Menu</p>
-      <h1>What are you eating today?</h1>
-      <p>Tap + to add dishes, then send your order on WhatsApp.</p>
+    <section class="page-intro wrap">
+      <p class="overline">Menu</p>
+      <h1>What are you having?</h1>
+      <p class="lede">Choose your dishes, then send the order to us on WhatsApp. We'll confirm the price and time.</p>
     </section>
 
-    <section class="section section-tight">
-      <div class="dishes">
-        <article class="dish" id="waakye">
-          <img src="images/waakye-special.jpg" alt="Waakye with fish, egg, gari, spaghetti and plantain">
-          <div class="dish-body">
-            <h2>Hot &amp; Spicy Waakye</h2>
-            <p>Rice and beans with shito, gari, spaghetti, egg and plantain.</p>
-            <div class="stepper" data-dish="waakye">
-              <button type="button" data-step="-1" aria-label="Remove one waakye">−</button>
-              <output aria-live="polite">0</output>
-              <button type="button" data-step="1" aria-label="Add one waakye">+</button>
-            </div>
+    <section class="wrap dishes">
+      <article class="dish" id="waakye">
+        <img src="images/waakye-special.jpg" alt="Waakye with fish, egg, gari, spaghetti and plantain">
+        <div class="dish-info">
+          <span class="menu-num">01</span>
+          <h2>Hot &amp; Spicy Waakye</h2>
+          <p>Rice and beans with shito, gari, spaghetti, egg and plantain.</p>
+          <div class="qty" data-dish="waakye">
+            <button type="button" data-step="-1" aria-label="Remove one waakye"><svg class="i"><use href="icons.svg#minus"/></svg></button>
+            <output aria-live="polite">0</output>
+            <button type="button" data-step="1" aria-label="Add one waakye"><svg class="i"><use href="icons.svg#plus"/></svg></button>
           </div>
-        </article>
-        <article class="dish" id="jollof">
-          <img src="images/jollof-chicken-plantain.jpg" alt="Jollof rice with grilled chicken, plantain and salad">
-          <div class="dish-body">
-            <h2>Jollof Rice</h2>
-            <p>Smoky tomato jollof with chicken, plantain and salad.</p>
-            <div class="stepper" data-dish="jollof">
-              <button type="button" data-step="-1" aria-label="Remove one jollof">−</button>
-              <output aria-live="polite">0</output>
-              <button type="button" data-step="1" aria-label="Add one jollof">+</button>
-            </div>
+        </div>
+      </article>
+
+      <article class="dish" id="jollof">
+        <img src="images/jollof-chicken-plantain.jpg" alt="Jollof rice with grilled chicken, plantain and salad">
+        <div class="dish-info">
+          <span class="menu-num">02</span>
+          <h2>Jollof Rice</h2>
+          <p>Tomato jollof with chicken, plantain and salad.</p>
+          <div class="qty" data-dish="jollof">
+            <button type="button" data-step="-1" aria-label="Remove one jollof"><svg class="i"><use href="icons.svg#minus"/></svg></button>
+            <output aria-live="polite">0</output>
+            <button type="button" data-step="1" aria-label="Add one jollof"><svg class="i"><use href="icons.svg#plus"/></svg></button>
           </div>
-        </article>
-        <article class="dish" id="plain">
-          <img src="images/plain-rice.jpg" alt="Plain rice with fried chicken, salad and shito">
-          <div class="dish-body">
-            <h2>Plain Rice</h2>
-            <p>Plain rice with chicken, salad and shito.</p>
-            <div class="stepper" data-dish="plain">
-              <button type="button" data-step="-1" aria-label="Remove one plain rice">−</button>
-              <output aria-live="polite">0</output>
-              <button type="button" data-step="1" aria-label="Add one plain rice">+</button>
-            </div>
+        </div>
+      </article>
+
+      <article class="dish" id="plain">
+        <img src="images/plain-rice.jpg" alt="Plain rice with fried chicken, salad and shito">
+        <div class="dish-info">
+          <span class="menu-num">03</span>
+          <h2>Plain Rice</h2>
+          <p>Plain rice with chicken, salad and shito.</p>
+          <div class="qty" data-dish="plain">
+            <button type="button" data-step="-1" aria-label="Remove one plain rice"><svg class="i"><use href="icons.svg#minus"/></svg></button>
+            <output aria-live="polite">0</output>
+            <button type="button" data-step="1" aria-label="Add one plain rice"><svg class="i"><use href="icons.svg#plus"/></svg></button>
           </div>
-        </article>
+        </div>
+      </article>
+    </section>
+
+    <section class="checkout" id="checkout">
+      <div class="wrap narrow">
+        <p class="overline">Checkout</p>
+        <h2>Your order</h2>
+
+        <form id="order-form" class="form" novalidate>
+          <ul class="summary" id="order-summary"></ul>
+
+          <fieldset class="options options-2">
+            <legend>Pick-up or delivery</legend>
+            <label><input type="radio" name="method" value="Delivery" checked><span><svg class="i" aria-hidden="true"><use href="icons.svg#bike"/></svg>Delivery</span></label>
+            <label><input type="radio" name="method" value="Pick-up"><span><svg class="i" aria-hidden="true"><use href="icons.svg#bag"/></svg>Pick-up</span></label>
+          </fieldset>
+
+          <label class="field">Name
+            <input name="name" type="text" required autocomplete="name">
+          </label>
+          <label class="field">Phone
+            <input name="phone" type="tel" required autocomplete="tel" placeholder="024 000 0000">
+          </label>
+          <label class="field" id="address-field">Delivery address
+            <input name="address" type="text" autocomplete="street-address" placeholder="Area and a landmark">
+          </label>
+          <label class="field"><span>Notes <span class="optional">(optional)</span></span>
+            <textarea name="notes" rows="2" placeholder="Extra shito, no egg, etc."></textarea>
+          </label>
+
+          <p class="form-error" id="order-error" role="alert"></p>
+          <button type="submit" class="btn btn-accent btn-wide">
+            <svg class="i" aria-hidden="true"><use href="icons.svg#chat"/></svg>Send order on WhatsApp
+          </button>
+        </form>
       </div>
-    </section>
-
-    <section class="section section-dark" id="checkout">
-      <p class="eyebrow">Checkout</p>
-      <h2>Your order</h2>
-      <form id="order-form" class="card" novalidate>
-        <ul class="summary" id="order-summary"><li class="muted">No dishes yet. Tap + on a dish above.</li></ul>
-
-        <fieldset class="segmented">
-          <legend>How do you want it?</legend>
-          <label><input type="radio" name="method" value="Delivery" checked><span>🛵 Delivery</span></label>
-          <label><input type="radio" name="method" value="Pick-up"><span>🥡 Pick-up</span></label>
-        </fieldset>
-
-        <label>Your name
-          <input name="name" type="text" required autocomplete="name">
-        </label>
-        <label>Phone number
-          <input name="phone" type="tel" required autocomplete="tel" placeholder="024 000 0000">
-        </label>
-        <label id="address-field">Delivery address
-          <input name="address" type="text" autocomplete="street-address" placeholder="Area, landmark">
-        </label>
-        <label>Notes (optional)
-          <textarea name="notes" rows="2" placeholder="Extra shito, no fish, etc."></textarea>
-        </label>
-
-        <p class="form-error" id="order-error" role="alert"></p>
-        <button type="submit" class="btn btn-yellow btn-lg btn-block">Send order on WhatsApp</button>
-      </form>
     </section>
   </main>
 
   <a href="#checkout" class="cart-bar" id="cart-bar" hidden>
-    <span><strong id="cart-count">0</strong> item(s)</span>
-    <span>Checkout →</span>
+    <span class="cart-count"><svg class="i" aria-hidden="true"><use href="icons.svg#bag"/></svg><span id="cart-count">0</span> <span id="cart-word">items</span></span>
+    <span class="cart-go">Checkout <svg class="i" aria-hidden="true"><use href="icons.svg#arrow"/></svg></span>
   </a>
 
-  <footer class="footer">
-    <a class="footer-item" href="tel:+233535815707">
-      <span class="footer-label">Call to order</span>
-      <strong>053 581 5707</strong>
-    </a>
-    <div class="footer-item">
-      <span class="footer-label">Find us at</span>
-      <strong>Anyinam Zongo</strong>
-      <span>Near the Islamic JHS</span>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a href="index.html" class="wordmark">Sherrif's</a>
+        <p class="footer-note">Hot &amp; spicy waakye, jollof and plain rice.</p>
+      </div>
+      <ul class="footer-list">
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#pin"/></svg>Anyinam Zongo, near the Islamic JHS</li>
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg><a href="tel:+233535815707">053 581 5707</a></li>
+      </ul>
+      <p class="footer-copy">&copy; <span data-year>2026</span> Sherrif's</p>
     </div>
   </footer>
 
-  <nav class="tabbar" aria-label="Main">
-    <a href="index.html"><span>🏠</span>Home</a>
-    <a href="menu.html" aria-current="page"><span>🍛</span>Menu</a>
-    <a href="book.html"><span>📅</span>Book</a>
-    <a href="tel:+233535815707"><span>📞</span>Call</a>
+  <nav class="tabbar" aria-label="Quick links">
+    <a href="index.html"><svg class="i" aria-hidden="true"><use href="icons.svg#home"/></svg>Home</a>
+    <a href="menu.html" aria-current="page"><svg class="i" aria-hidden="true"><use href="icons.svg#utensils"/></svg>Menu</a>
+    <a href="book.html"><svg class="i" aria-hidden="true"><use href="icons.svg#calendar"/></svg>Catering</a>
+    <a href="tel:+233535815707"><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>Call</a>
   </nav>
 
   <script src="script.js"></script>

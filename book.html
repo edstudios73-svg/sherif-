@@ -3,94 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#5a0610">
-  <title>Book an Event · Sherrif's</title>
-  <meta name="description" content="Book Sherrif's to cater your event, party, wedding or funeral.">
+  <meta name="theme-color" content="#f4efe6">
+  <title>Catering | Sherrif's</title>
+  <meta name="description" content="Book Sherrif's to cook for your event, party, wedding or funeral in and around Anyinam.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="page-book">
-  <header class="topbar">
-    <a href="index.html" class="logo">Sherrif's</a>
-    <nav class="desk-nav">
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu &amp; Order</a>
-      <a href="book.html" aria-current="page">Book an Event</a>
-      <a href="tel:+233535815707" class="btn btn-yellow btn-sm">053 581 5707</a>
-    </nav>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="wordmark">Sherrif's</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book.html" aria-current="page">Catering</a>
+      </nav>
+      <a href="tel:+233535815707" class="header-call">
+        <svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>
+        <span>053 581 5707</span>
+      </a>
+    </div>
   </header>
 
   <main>
-    <section class="page-head page-head-photo" style="--bg:url(images/waakye-leaf.jpg)">
-      <p class="eyebrow">Catering</p>
+    <section class="page-intro wrap">
+      <p class="overline">Catering</p>
       <h1>Book us for your event</h1>
-      <p>Events · Parties · Weddings · Funerals</p>
+      <p class="lede">Events, parties, weddings and funerals. Send us the details and we'll call you back to confirm.</p>
     </section>
 
-    <section class="section section-tight">
-      <form id="book-form" class="card card-light" novalidate>
-        <fieldset class="event-pick">
+    <div class="wrap book-layout">
+      <figure class="book-photo">
+        <img src="images/waakye-plate.jpg" alt="A plate of waakye with gari, spaghetti, plantain, egg and salad">
+      </figure>
+
+      <form id="book-form" class="form" novalidate>
+        <fieldset class="options options-4">
           <legend>Type of event</legend>
-          <label><input type="radio" name="event" value="Event" required><span>🎉<br>Event</span></label>
-          <label><input type="radio" name="event" value="Party"><span>🥳<br>Party</span></label>
-          <label><input type="radio" name="event" value="Wedding"><span>💍<br>Wedding</span></label>
-          <label><input type="radio" name="event" value="Funeral"><span>🕊️<br>Funeral</span></label>
+          <label><input type="radio" name="event" value="Event"><span>Event</span></label>
+          <label><input type="radio" name="event" value="Party"><span>Party</span></label>
+          <label><input type="radio" name="event" value="Wedding"><span>Wedding</span></label>
+          <label><input type="radio" name="event" value="Funeral"><span>Funeral</span></label>
         </fieldset>
 
-        <div class="two-col">
-          <label>Date
+        <div class="field-row">
+          <label class="field">Date
             <input name="date" type="date" required>
           </label>
-          <label>Number of guests
-            <input name="guests" type="number" min="1" inputmode="numeric" required>
+          <label class="field">Guests
+            <input name="guests" type="number" min="1" inputmode="numeric" required placeholder="e.g. 100">
           </label>
         </div>
 
         <fieldset class="checks">
-          <legend>Dishes you want</legend>
-          <label><input type="checkbox" name="dishes" value="Hot & Spicy Waakye" checked> Hot &amp; Spicy Waakye</label>
-          <label><input type="checkbox" name="dishes" value="Jollof Rice"> Jollof Rice</label>
-          <label><input type="checkbox" name="dishes" value="Plain Rice"> Plain Rice</label>
+          <legend>Dishes</legend>
+          <label><input type="checkbox" name="dishes" value="Hot & Spicy Waakye" checked><span>Hot &amp; Spicy Waakye</span></label>
+          <label><input type="checkbox" name="dishes" value="Jollof Rice"><span>Jollof Rice</span></label>
+          <label><input type="checkbox" name="dishes" value="Plain Rice"><span>Plain Rice</span></label>
         </fieldset>
 
-        <label>Your name
+        <label class="field">Name
           <input name="name" type="text" required autocomplete="name">
         </label>
-        <label>Phone number
+        <label class="field">Phone
           <input name="phone" type="tel" required autocomplete="tel">
         </label>
-        <label>Event location
+        <label class="field">Event location
           <input name="location" type="text" required>
         </label>
-        <label>Notes (optional)
+        <label class="field"><span>Notes <span class="optional">(optional)</span></span>
           <textarea name="notes" rows="2"></textarea>
         </label>
 
         <p class="form-error" id="book-error" role="alert"></p>
-        <button type="submit" class="btn btn-red btn-lg btn-block">Send booking on WhatsApp</button>
+        <button type="submit" class="btn btn-accent btn-wide">
+          <svg class="i" aria-hidden="true"><use href="icons.svg#chat"/></svg>Send booking on WhatsApp
+        </button>
       </form>
-    </section>
+    </div>
   </main>
 
-  <footer class="footer">
-    <a class="footer-item" href="tel:+233535815707">
-      <span class="footer-label">Call to order</span>
-      <strong>053 581 5707</strong>
-    </a>
-    <div class="footer-item">
-      <span class="footer-label">Find us at</span>
-      <strong>Anyinam Zongo</strong>
-      <span>Near the Islamic JHS</span>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a href="index.html" class="wordmark">Sherrif's</a>
+        <p class="footer-note">Hot &amp; spicy waakye, jollof and plain rice.</p>
+      </div>
+      <ul class="footer-list">
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#pin"/></svg>Anyinam Zongo, near the Islamic JHS</li>
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg><a href="tel:+233535815707">053 581 5707</a></li>
+      </ul>
+      <p class="footer-copy">&copy; <span data-year>2026</span> Sherrif's</p>
     </div>
   </footer>
 
-  <nav class="tabbar" aria-label="Main">
-    <a href="index.html"><span>🏠</span>Home</a>
-    <a href="menu.html"><span>🍛</span>Menu</a>
-    <a href="book.html" aria-current="page"><span>📅</span>Book</a>
-    <a href="tel:+233535815707"><span>📞</span>Call</a>
+  <nav class="tabbar" aria-label="Quick links">
+    <a href="index.html"><svg class="i" aria-hidden="true"><use href="icons.svg#home"/></svg>Home</a>
+    <a href="menu.html"><svg class="i" aria-hidden="true"><use href="icons.svg#utensils"/></svg>Menu</a>
+    <a href="book.html" aria-current="page"><svg class="i" aria-hidden="true"><use href="icons.svg#calendar"/></svg>Catering</a>
+    <a href="tel:+233535815707"><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>Call</a>
   </nav>
 
   <script src="script.js"></script>

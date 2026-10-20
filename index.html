@@ -3,103 +3,155 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#5a0610">
-  <title>Sherrif's Special Waakye</title>
-  <meta name="description" content="Hot & spicy waakye, jollof rice and plain rice at Anyinam Zongo, near the Islamic JHS. Order or book catering on WhatsApp.">
+  <meta name="theme-color" content="#1b1815">
+  <title>Sherrif's | Hot &amp; Spicy Waakye in Anyinam</title>
+  <meta name="description" content="Hot & spicy waakye, jollof rice and plain rice in Anyinam Zongo, near the Islamic JHS. Order for pick-up or delivery, or book us for your event.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="page-home">
-  <header class="topbar topbar-over">
-    <a href="index.html" class="logo">Sherrif's</a>
-    <nav class="desk-nav">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="menu.html">Menu &amp; Order</a>
-      <a href="book.html">Book an Event</a>
-      <a href="tel:+233535815707" class="btn btn-yellow btn-sm">053 581 5707</a>
-    </nav>
+<body>
+  <header class="site-header on-dark">
+    <div class="wrap header-inner">
+      <a href="index.html" class="wordmark">Sherrif's</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="book.html">Catering</a>
+      </nav>
+      <a href="tel:+233535815707" class="header-call">
+        <svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>
+        <span>053 581 5707</span>
+      </a>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-slides" aria-hidden="true">
-        <div class="slide is-active" style="background-image:url(images/waakye-plate.jpg)"></div>
-        <div class="slide" style="background-image:url(images/jollof-pan.jpg)"></div>
-        <div class="slide" style="background-image:url(images/waakye-leaf.jpg)"></div>
-        <div class="slide" style="background-image:url(images/jollof-chicken-plantain.jpg)"></div>
-        <div class="slide" style="background-image:url(images/waakye-special.jpg)"></div>
-        <div class="slide" style="background-image:url(images/plain-rice.jpg)"></div>
-        <div class="slide" style="background-image:url(images/jollof-chicken.jpg)"></div>
+      <div class="hero-media" aria-hidden="true">
+        <img class="slide is-active" src="images/waakye-plate.jpg" alt="">
+        <img class="slide" src="images/jollof-pan.jpg" alt="" loading="lazy">
+        <img class="slide" src="images/waakye-leaf.jpg" alt="" loading="lazy">
+        <img class="slide" src="images/jollof-chicken-plantain.jpg" alt="" loading="lazy">
+        <img class="slide" src="images/waakye-special.jpg" alt="" loading="lazy">
+        <img class="slide" src="images/plain-rice.jpg" alt="" loading="lazy">
+        <img class="slide" src="images/jollof-chicken.jpg" alt="" loading="lazy">
       </div>
-      <div class="hero-shade"></div>
 
-      <div class="hero-content">
-        <p class="hero-kicker">🔥 Hot &amp; Spicy · Anyinam Zongo</p>
-        <h1 class="hero-title">
-          <span class="hero-special">Special</span>
-          <span class="hero-big">Waakye</span>
-        </h1>
-        <p class="hero-sub">Waakye, jollof and plain rice, freshly cooked every day. Delivery available.</p>
+      <div class="wrap hero-inner">
+        <p class="overline">Anyinam Zongo &middot; Near the Islamic JHS</p>
+        <h1 class="hero-title">Hot &amp; spicy<br><em>waakye.</em></h1>
+        <p class="hero-lede">Plus jollof and plain rice. Order for pick-up or delivery, or book us to cook for your event.</p>
         <div class="hero-actions">
-          <a href="menu.html" class="btn btn-yellow btn-lg">Order now</a>
-          <a href="book.html" class="btn btn-glass btn-lg">Book an event</a>
+          <a href="menu.html" class="btn btn-light">Order now <svg class="i" aria-hidden="true"><use href="icons.svg#arrow"/></svg></a>
+          <a href="book.html" class="link-light">Book catering</a>
         </div>
-        <div class="hero-dots" role="tablist" aria-label="Food photos"></div>
+
+        <div class="hero-counter" aria-hidden="true">
+          <span class="count-now">01</span>
+          <span class="count-bar"><span></span></span>
+          <span class="count-total">07</span>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <p class="eyebrow">What we cook</p>
-      <h2>Three dishes, done right</h2>
-      <div class="teasers">
-        <a href="menu.html#waakye" class="teaser">
-          <img src="images/waakye-special.jpg" alt="Waakye with fish, egg, gari, spaghetti and plantain" loading="lazy">
-          <span>Hot &amp; Spicy Waakye</span>
-        </a>
-        <a href="menu.html#jollof" class="teaser">
-          <img src="images/jollof-chicken-plantain.jpg" alt="Jollof rice with grilled chicken, plantain and salad" loading="lazy">
-          <span>Jollof Rice</span>
-        </a>
-        <a href="menu.html#plain" class="teaser">
-          <img src="images/plain-rice.jpg" alt="Plain rice with fried chicken, salad and shito" loading="lazy">
-          <span>Plain Rice</span>
-        </a>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="overline">The menu</p>
+          <h2>Three dishes. Nothing else.</h2>
+        </div>
+
+        <ol class="menu-list">
+          <li>
+            <a href="menu.html#waakye">
+              <img src="images/waakye-special.jpg" alt="" loading="lazy">
+              <span class="menu-num">01</span>
+              <span class="menu-text">
+                <span class="menu-name">Hot &amp; Spicy Waakye</span>
+                <span class="menu-desc">With shito, gari, spaghetti, egg and plantain</span>
+              </span>
+              <svg class="i menu-arrow" aria-hidden="true"><use href="icons.svg#arrow"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="menu.html#jollof">
+              <img src="images/jollof-chicken-plantain.jpg" alt="" loading="lazy">
+              <span class="menu-num">02</span>
+              <span class="menu-text">
+                <span class="menu-name">Jollof Rice</span>
+                <span class="menu-desc">With chicken, plantain and salad</span>
+              </span>
+              <svg class="i menu-arrow" aria-hidden="true"><use href="icons.svg#arrow"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="menu.html#plain">
+              <img src="images/plain-rice.jpg" alt="" loading="lazy">
+              <span class="menu-num">03</span>
+              <span class="menu-text">
+                <span class="menu-name">Plain Rice</span>
+                <span class="menu-desc">With chicken, salad and shito</span>
+              </span>
+              <svg class="i menu-arrow" aria-hidden="true"><use href="icons.svg#arrow"/></svg>
+            </a>
+          </li>
+        </ol>
       </div>
-      <a href="menu.html" class="btn btn-red btn-block-mobile">See the menu &amp; order</a>
     </section>
 
-    <section class="section section-dark">
-      <p class="eyebrow">Catering</p>
-      <h2>We take orders for</h2>
-      <ul class="chips">
-        <li>🎉 Events</li>
-        <li>🥳 Parties</li>
-        <li>💍 Weddings</li>
-        <li>🕊️ Funerals</li>
-      </ul>
-      <a href="book.html" class="btn btn-yellow btn-block-mobile">Book us for your event</a>
+    <section class="feature">
+      <img class="feature-img" src="images/waakye-leaf.jpg" alt="Waakye served on a leaf with avocado, egg, gari and salad" loading="lazy">
+      <div class="feature-text">
+        <p class="overline">Catering</p>
+        <h2>Cooking for a crowd?</h2>
+        <p>We take orders for events, parties, weddings and funerals. Tell us the date and how many guests, and we'll handle the food.</p>
+        <a href="book.html" class="btn btn-dark">Book catering <svg class="i" aria-hidden="true"><use href="icons.svg#arrow"/></svg></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap facts">
+        <div class="fact">
+          <svg class="i" aria-hidden="true"><use href="icons.svg#bike"/></svg>
+          <h3>Delivery</h3>
+          <p>Available around Anyinam. Or pick up from us.</p>
+        </div>
+        <div class="fact">
+          <svg class="i" aria-hidden="true"><use href="icons.svg#flame"/></svg>
+          <h3>Hot &amp; spicy</h3>
+          <p>Cooked fresh and served hot.</p>
+        </div>
+        <a class="fact" href="tel:+233535815707">
+          <svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>
+          <h3>053 581 5707</h3>
+          <p>Call or WhatsApp to order.</p>
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="footer-item" href="tel:+233535815707">
-      <span class="footer-label">Call to order</span>
-      <strong>053 581 5707</strong>
-    </a>
-    <div class="footer-item">
-      <span class="footer-label">Find us at</span>
-      <strong>Anyinam Zongo</strong>
-      <span>Near the Islamic JHS</span>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a href="index.html" class="wordmark">Sherrif's</a>
+        <p class="footer-note">Hot &amp; spicy waakye, jollof and plain rice.</p>
+      </div>
+      <ul class="footer-list">
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#pin"/></svg>Anyinam Zongo, near the Islamic JHS</li>
+        <li><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg><a href="tel:+233535815707">053 581 5707</a></li>
+      </ul>
+      <p class="footer-copy">&copy; <span data-year>2026</span> Sherrif's</p>
     </div>
   </footer>
 
-  <nav class="tabbar" aria-label="Main">
-    <a href="index.html" aria-current="page"><span>🏠</span>Home</a>
-    <a href="menu.html"><span>🍛</span>Menu</a>
-    <a href="book.html"><span>📅</span>Book</a>
-    <a href="tel:+233535815707"><span>📞</span>Call</a>
+  <nav class="tabbar" aria-label="Quick links">
+    <a href="index.html" aria-current="page"><svg class="i" aria-hidden="true"><use href="icons.svg#home"/></svg>Home</a>
+    <a href="menu.html"><svg class="i" aria-hidden="true"><use href="icons.svg#utensils"/></svg>Menu</a>
+    <a href="book.html"><svg class="i" aria-hidden="true"><use href="icons.svg#calendar"/></svg>Catering</a>
+    <a href="tel:+233535815707"><svg class="i" aria-hidden="true"><use href="icons.svg#phone"/></svg>Call</a>
   </nav>
 
   <script src="script.js"></script>

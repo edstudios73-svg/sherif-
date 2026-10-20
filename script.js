@@ -13,35 +13,29 @@ function openWhatsApp(message) {
 }
 
 // ---- Home: rotating food photos behind the hero ----
-const slides = document.querySelectorAll(".hero-slides .slide");
+const slides = document.querySelectorAll(".hero-media .slide");
 if (slides.length) {
-  const dots = document.querySelector(".hero-dots");
+  const SLIDE_MS = 5000;
+  const countNow = document.querySelector(".count-now");
+  const bar = document.querySelector(".count-bar span");
   let current = 0;
-  let timer;
 
-  const show = (i) => {
+  const pad = (n) => String(n).padStart(2, "0");
+  const restartBar = () => {
+    bar.classList.remove("run");
+    void bar.offsetWidth; // restart the CSS animation
+    bar.classList.add("run");
+  };
+
+  document.querySelector(".count-total").textContent = pad(slides.length);
+  restartBar();
+  setInterval(() => {
     slides[current].classList.remove("is-active");
-    dots.children[current].setAttribute("aria-selected", "false");
-    current = (i + slides.length) % slides.length;
+    current = (current + 1) % slides.length;
     slides[current].classList.add("is-active");
-    dots.children[current].setAttribute("aria-selected", "true");
-  };
-  const start = () => {
-    clearInterval(timer);
-    timer = setInterval(() => show(current + 1), 4000);
-  };
-
-  slides.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-label", `Photo ${i + 1}`);
-    dot.setAttribute("aria-selected", String(i === 0));
-    dot.addEventListener("click", () => { show(i); start(); });
-    dots.appendChild(dot);
-  });
-
-  start();
+    countNow.textContent = pad(current + 1);
+    restartBar();
+  }, SLIDE_MS);
 }
 
 // ---- Menu: steppers, cart bar and checkout ----
@@ -52,6 +46,7 @@ if (orderForm) {
   const summary = document.getElementById("order-summary");
   const cartBar = document.getElementById("cart-bar");
   const cartCount = document.getElementById("cart-count");
+  const cartWord = document.getElementById("cart-word");
   const orderError = document.getElementById("order-error");
   const addressField = document.getElementById("address-field");
 
@@ -59,17 +54,18 @@ if (orderForm) {
     const items = Object.entries(cart).filter(([, qty]) => qty > 0);
     const total = items.reduce((sum, [, qty]) => sum + qty, 0);
 
-    document.querySelectorAll(".stepper").forEach((s) => {
+    document.querySelectorAll(".qty").forEach((s) => {
       s.querySelector("output").textContent = cart[s.dataset.dish];
     });
     summary.innerHTML = items.length
       ? items.map(([key, qty]) => `<li><span>${DISHES[key]}</span><span>× ${qty}</span></li>`).join("")
-      : '<li class="muted">No dishes yet. Tap + on a dish above.</li>';
+      : '<li class="empty">Nothing added yet. Use + on a dish above.</li>';
     cartCount.textContent = total;
+    cartWord.textContent = total === 1 ? "item" : "items";
     cartBar.hidden = total === 0;
   };
 
-  document.querySelectorAll(".stepper").forEach((s) => {
+  document.querySelectorAll(".qty").forEach((s) => {
     s.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
@@ -174,3 +170,7 @@ if (bookForm) {
     openWhatsApp(lines.join("\n"));
   });
 }
+
+document.querySelectorAll("[data-year]").forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
