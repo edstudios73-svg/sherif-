@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5a0610">
+  <title>Menu &amp; Order · Sherrif's</title>
+  <meta name="description" content="Order Hot & Spicy Waakye, Jollof Rice and Plain Rice from Sherrif's on WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-menu">
+  <header class="topbar">
+    <a href="index.html" class="logo">Sherrif's</a>
+    <nav class="desk-nav">
+      <a href="index.html">Home</a>
+      <a href="menu.html" aria-current="page">Menu &amp; Order</a>
+      <a href="book.html">Book an Event</a>
+      <a href="tel:+233535815707" class="btn btn-yellow btn-sm">053 581 5707</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <p class="eyebrow">Menu</p>
+      <h1>What are you eating today?</h1>
+      <p>Tap + to add dishes, then send your order on WhatsApp.</p>
+    </section>
+
+    <section class="section section-tight">
+      <div class="dishes">
+        <article class="dish" id="waakye">
+          <img src="images/waakye-special.jpg" alt="Waakye with fish, egg, gari, spaghetti and plantain">
+          <div class="dish-body">
+            <h2>Hot &amp; Spicy Waakye</h2>
+            <p>Rice and beans with shito, gari, spaghetti, egg and plantain.</p>
+            <div class="stepper" data-dish="waakye">
+              <button type="button" data-step="-1" aria-label="Remove one waakye">−</button>
+              <output aria-live="polite">0</output>
+              <button type="button" data-step="1" aria-label="Add one waakye">+</button>
+            </div>
+          </div>
+        </article>
+        <article class="dish" id="jollof">
+          <img src="images/jollof-chicken-plantain.jpg" alt="Jollof rice with grilled chicken, plantain and salad">
+          <div class="dish-body">
+            <h2>Jollof Rice</h2>
+            <p>Smoky tomato jollof with chicken, plantain and salad.</p>
+            <div class="stepper" data-dish="jollof">
+              <button type="button" data-step="-1" aria-label="Remove one jollof">−</button>
+              <output aria-live="polite">0</output>
+              <button type="button" data-step="1" aria-label="Add one jollof">+</button>
+            </div>
+          </div>
+        </article>
+        <article class="dish" id="plain">
+          <img src="images/plain-rice.jpg" alt="Plain rice with fried chicken, salad and shito">
+          <div class="dish-body">
+            <h2>Plain Rice</h2>
+            <p>Plain rice with chicken, salad and shito.</p>
+            <div class="stepper" data-dish="plain">
+              <button type="button" data-step="-1" aria-label="Remove one plain rice">−</button>
+              <output aria-live="polite">0</output>
+              <button type="button" data-step="1" aria-label="Add one plain rice">+</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="checkout">
+      <p class="eyebrow">Checkout</p>
+      <h2>Your order</h2>
+      <form id="order-form" class="card" novalidate>
+        <ul class="summary" id="order-summary"><li class="muted">No dishes yet. Tap + on a dish above.</li></ul>
+
+        <fieldset class="segmented">
+          <legend>How do you want it?</legend>
+          <label><input type="radio" name="method" value="Delivery" checked><span>🛵 Delivery</span></label>
+          <label><input type="radio" name="method" value="Pick-up"><span>🥡 Pick-up</span></label>
+        </fieldset>
+
+        <label>Your name
+          <input name="name" type="text" required autocomplete="name">
+        </label>
+        <label>Phone number
+          <input name="phone" type="tel" required autocomplete="tel" placeholder="024 000 0000">
+        </label>
+        <label id="address-field">Delivery address
+          <input name="address" type="text" autocomplete="street-address" placeholder="Area, landmark">
+        </label>
+        <label>Notes (optional)
+          <textarea name="notes" rows="2" placeholder="Extra shito, no fish, etc."></textarea>
+        </label>
+
+        <p class="form-error" id="order-error" role="alert"></p>
+        <button type="submit" class="btn btn-yellow btn-lg btn-block">Send order on WhatsApp</button>
+      </form>
+    </section>
+  </main>
+
+  <a href="#checkout" class="cart-bar" id="cart-bar" hidden>
+    <span><strong id="cart-count">0</strong> item(s)</span>
+    <span>Checkout →</span>
+  </a>
+
+  <footer class="footer">
+    <a class="footer-item" href="tel:+233535815707">
+      <span class="footer-label">Call to order</span>
+      <strong>053 581 5707</strong>
+    </a>
+    <div class="footer-item">
+      <span class="footer-label">Find us at</span>
+      <strong>Anyinam Zongo</strong>
+      <span>Near the Islamic JHS</span>
+    </div>
+  </footer>
+
+  <nav class="tabbar" aria-label="Main">
+    <a href="index.html"><span>🏠</span>Home</a>
+    <a href="menu.html" aria-current="page"><span>🍛</span>Menu</a>
+    <a href="book.html"><span>📅</span>Book</a>
+    <a href="tel:+233535815707"><span>📞</span>Call</a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
