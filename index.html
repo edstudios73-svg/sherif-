@@ -3,158 +3,92 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Faith Demonstration Ministries International · Accra</title>
-  <meta name="description" content="A prophetic and apostolic church in Adjen-Kotoku, Accra, led by Apostle Victor Annan. Join us for At His Feet, an all-night worship service on Friday 4 December 2026.">
+  <title>Faith Demonstration Ministries International</title>
+  <meta name="description" content="A prophetic and apostolic church in Adjen-Kotoku, Accra, led by Apostle Victor Annan.">
   <meta property="og:title" content="Faith Demonstration Ministries International">
-  <meta property="og:description" content="At His Feet: worship all night. Friday 4 December 2026, 8:00 PM, church premises, Adjen-Kotoku, Accra.">
-  <meta property="og:image" content="assets/at-his-feet-flyer.jpg">
-  <link rel="icon" href="assets/fdmi-crest.png">
+  <meta property="og:description" content="At His Feet: worship all night. Friday 4 December 2026, 8:00 PM, Adjen-Kotoku, Accra.">
+  <meta property="og:image" content="/assets/fdmi-crest.jpg">
+  <link rel="icon" href="assets/fdmi-crest.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Faith Demonstration Ministries International, home">
-      <img src="assets/fdmi-crest.png" alt="" width="40" height="40">
-      <span>F.D.M.I</span>
+  <header class="top">
+    <a class="brand" href="#" aria-label="Home">
+      <img src="assets/fdmi-crest.jpg" alt="" width="32" height="32">
+      <span>FDMI</span>
     </a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav id="nav" class="nav">
-      <a href="#at-his-feet">At His Feet</a>
-      <a href="#about">About us</a>
+    <nav aria-label="Main">
+      <a href="#event">Event</a>
       <a href="#visit">Visit</a>
-      <a href="#follow">Watch</a>
-      <a class="nav-cta" href="https://wa.me/233596609093">WhatsApp us</a>
+      <a href="#online">Online</a>
     </nav>
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <img class="hero-crest" src="assets/fdmi-crest.png" alt="Faith Demonstration Ministries International crest" width="112" height="112">
-      <h1>Faith Demonstration<br>Ministries International</h1>
-      <p class="hero-lede">A prophetic and apostolic church in Adjen-Kotoku, Accra, led by Apostle Victor Annan. Come as you are. There is a seat for you in the house.</p>
-      <div class="hero-actions">
-        <a class="btn btn-gold" href="#visit">Plan your visit</a>
-        <a class="btn btn-ghost" href="https://wa.me/233596609093">Chat with us on WhatsApp</a>
-      </div>
+    <section class="intro">
+      <h1>Faith Demonstration Ministries International</h1>
+      <p>A prophetic and apostolic church in Adjen-Kotoku, Accra, led by Apostle Victor Annan. Come as you are.</p>
+      <a class="btn" href="https://wa.me/233596609093">Message us on WhatsApp</a>
     </section>
 
-    <!-- Featured event -->
-    <section class="event" id="at-his-feet" aria-labelledby="event-title">
-      <div class="event-inner">
-        <figure class="event-flyer">
-          <img src="assets/at-his-feet-flyer.jpg" alt="At His Feet worship all night flyer: Friday 4th December 2026, 8:00 PM, church premises, last stop Adjen-Kotoku next to Pick N Nikki School." width="1290" height="1804" loading="lazy">
-        </figure>
+    <section id="event" aria-labelledby="event-title">
+      <h2 id="event-title" class="event-title">At His <em>Feet</em></h2>
+      <p class="event-sub">Worship all night</p>
 
-        <div class="event-body">
-          <p class="event-kicker">Next special service</p>
-          <h2 id="event-title" class="event-title"><span>At His</span> Feet</h2>
-          <p class="event-sub">Worship all night</p>
+      <dl class="facts">
+        <div><dt>When</dt><dd>Friday 4 December 2026, 8:00 PM</dd></div>
+        <div><dt>Where</dt><dd>Church premises, last stop Adjen-Kotoku, next to Pick N Nikki School</dd></div>
+        <div><dt>With</dt><dd>Bishop Victor Annan, Rev. Mrs Natalie Annan, Rose Adjei, Anita Binney, Pastor Albert Abekah, Lady Rev. Nana Serwaa Yeboah, Nana Ama and Abore Junior</dd></div>
+        <div><dt>Info</dt><dd><a href="tel:+233594708027">+233 59 470 8027</a>, <a href="tel:+233506229589">+233 50 622 9589</a></dd></div>
+      </dl>
 
-          <dl class="event-facts">
-            <div><dt>When</dt><dd>Friday 4 December 2026, from 8:00 PM</dd></div>
-            <div><dt>Where</dt><dd>Church premises, last stop Adjen-Kotoku, next to Pick N Nikki School</dd></div>
-          </dl>
+      <p class="countdown" id="countdown" aria-live="off"></p>
 
-          <div class="countdown" id="countdown" aria-live="polite">
-            <div class="cd-unit"><span class="cd-num" data-unit="days">--</span><span class="cd-label">days</span></div>
-            <div class="cd-unit"><span class="cd-num" data-unit="hours">--</span><span class="cd-label">hours</span></div>
-            <div class="cd-unit"><span class="cd-num" data-unit="minutes">--</span><span class="cd-label">minutes</span></div>
-            <div class="cd-unit"><span class="cd-num" data-unit="seconds">--</span><span class="cd-label">seconds</span></div>
-          </div>
-          <p class="countdown-done" id="countdown-done" hidden>At His Feet has taken place. Thank you to everyone who worshipped with us. Follow us below for the next service.</p>
-
-          <h3 class="event-h3">Ministering on the night</h3>
-          <ul class="ministers">
-            <li>Bishop Victor Annan</li>
-            <li>Rev. Mrs Natalie Annan</li>
-            <li>Rose Adjei</li>
-            <li>Anita Binney</li>
-            <li>Pastor Albert Abekah</li>
-            <li>Lady Rev. Nana Serwaa Yeboah</li>
-            <li>Nana Ama</li>
-            <li>Abore Junior</li>
-          </ul>
-
-          <div class="event-actions">
-            <a class="btn btn-gold" id="add-calendar" href="#" download="at-his-feet.ics">Add to my calendar</a>
-            <a class="btn btn-ghost" href="tel:+233594708027">Call +233 59 470 8027</a>
-          </div>
-          <p class="event-more">For more information, also call <a href="tel:+233506229589">+233 50 622 9589</a>.</p>
-        </div>
-      </div>
+      <p class="links">
+        <a id="add-calendar" href="#" download="at-his-feet.ics">Add to calendar</a>
+      </p>
     </section>
 
-    <!-- About & leadership -->
-    <section class="about" id="about" aria-labelledby="about-title">
-      <div class="about-intro">
-        <h2 id="about-title">A house where faith is shown, not only spoken</h2>
-        <p>Faith Demonstration Ministries International is a prophetic and apostolic ministry in Accra, Ghana. We gather to worship, to hear the Word of God and to see it at work in everyday lives: in healing, in restoration and in families made whole.</p>
-        <p>Whether you have walked with Jesus for years or you are only beginning to ask questions, you are welcome here.</p>
-      </div>
-
-      <div class="leaders">
-        <article class="leader">
-          <img src="assets/victor-annan.jpg" alt="Apostle Victor Annan" width="480" height="480" loading="lazy">
-          <h3>Apostle Victor Annan</h3>
-          <p class="leader-role">Leads the ministry</p>
-          <p>A minister of the Gospel of our Lord Jesus Christ, Apostle Annan leads the ministry with a deep prophetic and apostolic grace.</p>
-        </article>
-        <article class="leader">
-          <img src="assets/natalie-annan.jpg" alt="Rev. Mrs Natalie Annan" width="480" height="480" loading="lazy">
-          <h3>Rev. Mrs Natalie Annan</h3>
-          <p class="leader-role">Ministers alongside the Apostle</p>
-          <p>Rev. Mrs Annan serves alongside the Apostle, caring for the church family and ministering in worship and the Word.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Visit -->
-    <section class="visit" id="visit" aria-labelledby="visit-title">
-      <div class="visit-text">
-        <h2 id="visit-title">Find us in Adjen-Kotoku</h2>
-        <address>
-          Faith Demonstration Ministries International<br>
-          Last stop, Adjen-Kotoku (Medie-Kotoku area)<br>
-          Next to Pick N Nikki School<br>
-          Accra, Ghana
-        </address>
-        <p>Service times can change for special programmes, so message us on WhatsApp or call before your first visit and we will tell you what is on this week.</p>
-        <div class="visit-actions">
-          <a class="btn btn-wine" href="https://wa.me/233596609093">WhatsApp +233 59 660 9093</a>
-          <a class="btn btn-outline" href="tel:+233596609093">Call the church</a>
-          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Pick+N+Nikki+School+Adjen+Kotoku+Accra">Open in Google Maps</a>
-        </div>
-      </div>
-      <div class="visit-map">
-        <iframe title="Map of Adjen-Kotoku, Accra" src="https://maps.google.com/maps?q=Adjen%20Kotoku%2C%20Accra%2C%20Ghana&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </section>
-
-    <!-- Follow -->
-    <section class="follow" id="follow" aria-labelledby="follow-title">
-      <h2 id="follow-title">Worship with us online</h2>
-      <p>Can't be there in person? Catch services, clips and announcements on our pages.</p>
-      <ul class="socials">
-        <li><a href="https://www.facebook.com/search/top?q=FAITH%20Demonstration%20Ministries%20International"><strong>Facebook</strong><span>FAITH Demonstration Ministries International</span></a></li>
-        <li><a href="https://www.instagram.com/apostlevictorannan"><strong>Instagram</strong><span>@apostlevictorannan</span></a></li>
-        <li><a href="https://www.tiktok.com/@apostlevictorannan"><strong>TikTok</strong><span>@apostlevictorannan</span></a></li>
-        <li><a href="https://www.youtube.com/results?search_query=faith+demonstration+ministries+victor+annan"><strong>YouTube</strong><span>Faith Demonstration Ministries</span></a></li>
+    <section aria-labelledby="leaders-title">
+      <h2 id="leaders-title">Leadership</h2>
+      <ul class="leaders">
+        <li><img src="assets/victor-annan.jpg" alt="" width="72" height="72" loading="lazy"><span>Apostle Victor Annan</span></li>
+        <li><img src="assets/natalie-annan.jpg" alt="" width="72" height="72" loading="lazy"><span>Rev. Mrs Natalie Annan</span></li>
       </ul>
+    </section>
+
+    <section id="visit" aria-labelledby="visit-title">
+      <h2 id="visit-title">Visit</h2>
+      <address>
+        Last stop, Adjen-Kotoku<br>
+        Next to Pick N Nikki School<br>
+        Accra, Ghana
+      </address>
+      <p class="note">Call or WhatsApp before your first visit and we'll tell you this week's service times.</p>
+      <p class="links">
+        <a href="tel:+233596609093">Call +233 59 660 9093</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Pick+N+Nikki+School+Adjen+Kotoku+Accra">Directions</a>
+      </p>
+    </section>
+
+    <section id="online" aria-labelledby="online-title">
+      <h2 id="online-title">Online</h2>
+      <p class="links">
+        <a href="https://www.facebook.com/search/top?q=FAITH%20Demonstration%20Ministries%20International">Facebook</a>
+        <a href="https://www.instagram.com/apostlevictorannan">Instagram</a>
+        <a href="https://www.tiktok.com/@apostlevictorannan">TikTok</a>
+        <a href="https://www.youtube.com/results?search_query=faith+demonstration+ministries+victor+annan">YouTube</a>
+      </p>
     </section>
   </main>
 
-  <footer class="footer">
-    <img src="assets/fdmi-crest.png" alt="" width="56" height="56">
-    <p>Faith Demonstration Ministries International<br>Adjen-Kotoku, Accra, Ghana</p>
-    <p><a href="tel:+233596609093">+233 59 660 9093</a></p>
-    <p class="footer-small">&copy; <span id="year">2026</span> Faith Demonstration Ministries International</p>
+  <footer class="foot">
+    <p>&copy; <span id="year">2026</span> Faith Demonstration Ministries International, Accra</p>
   </footer>
 
   <script src="script.js"></script>
