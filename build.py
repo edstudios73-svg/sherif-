@@ -174,21 +174,27 @@ SUMMARIES = {  # short versions of announcements for the home page
 }
 
 MINISTRIES = [  # (id, name, photo, object-position, text, WhatsApp message)
-    ("worship", "Worship", "assets/photos/worship-team.jpg", "50% 45%",
-     "The worship team leads the house in praise at every service, and through the night at all-night worship services like At His Feet.",
-     "Hello, I would like to join the worship team."),
-    ("prayer", "Prayer", "assets/photos/white-service-4.jpg", "50% 50%",
-     "Prayer runs through the whole week. Grace Hour meets on Wednesday mornings and the Liberation and Prophetic Hour on Friday evenings.",
-     "Hello, I would like to know more about the prayer ministry."),
-    ("youth", "Youth", "assets/photos/youth-night.jpg", "50% 40%",
-     "Young people meet, worship and grow together. In line with our focus, we want to train them with vocational skills for life.",
-     "Hello, I would like to join the youth ministry."),
-    ("children", "Children", "assets/photos/child-dedication.jpg", "50% 25%",
-     "From dedication onwards, children are part of the church family. They are taught, prayed for and celebrated.",
-     "Hello, I would like to know more about the children's ministry."),
-    ("outreach", "Outreach and welfare", "assets/photos/church-family.jpg", "50% 35%",
-     "Our goals are to reach the unreached, to help the less privileged and to help the aged. We serve the sub-communities around us.",
-     "Hello, I would like to help with outreach and welfare."),
+    ("music", "Music Ministry", "assets/photos/worship-team.jpg", "50% 45%",
+     "The music ministry leads the house in praise and worship at every service, and through the night at all-night services like At His Feet.",
+     "Hello, I would like to join the Music Ministry."),
+    ("prayer", "Prayer Ministry", "assets/photos/white-service-4.jpg", "50% 50%",
+     "The prayer ministry carries the church in prayer, including Grace Hour on Wednesday mornings and the Liberation and Prophetic Hour on Fridays.",
+     "Hello, I would like to join the Prayer Ministry."),
+    ("missions", "Missions and Outreach", "assets/photos/church-family.jpg", "50% 35%",
+     "Missions and Outreach takes the Gospel beyond the church walls: to reach the unreached, help the less privileged and care for the aged.",
+     "Hello, I would like to join Missions and Outreach."),
+    ("women", "Women Ministry", "assets/photos/women-celebration.jpg", "50% 25%",
+     "The women of the church meet to pray, grow in the Word and support one another as wives, mothers and daughters of faith.",
+     "Hello, I would like to join the Women Ministry."),
+    ("men", "Men Ministry", "assets/photos/fellowship-in-white.jpg", "50% 15%",
+     "The men of the church meet for fellowship, prayer and the Word, standing together as fathers, husbands and leaders in the house.",
+     "Hello, I would like to join the Men Ministry."),
+    ("hospitality", "Hospitality", "assets/photos/family-celebration.jpg", "50% 30%",
+     "The hospitality team welcomes guests and cares for the church family at services, programmes and celebrations.",
+     "Hello, I would like to join the Hospitality team."),
+    ("protocol", "Protocol and Ushering", "assets/photos/white-service-1.jpg", "50% 45%",
+     "Protocol and ushering keep every service in order: greeting people at the door, seating them, and serving the ministers and guests.",
+     "Hello, I would like to join Protocol and Ushering."),
 ]
 
 GALLERY = [  # (file in assets/photos, caption)
@@ -228,7 +234,7 @@ TITLES = {  # page title tags, kept under ~60 characters for search results
     "index.html": "Faith Demonstration Ministries International, Accra",
     "about.html": "About FDMI | Vision, Mission and Goals",
     "leaders.html": "Leaders | Apostle Victor Annan | FDMI Accra",
-    "ministries.html": "Ministries | Worship, Prayer, Youth, Children | FDMI",
+    "ministries.html": "Ministries | Music, Prayer, Missions and More | FDMI",
     "sermons.html": "Sermons | Divine Service and Study His Word | FDMI",
     "events.html": "At His Feet All-Night Worship, 4 Dec 2026 | FDMI",
     "announcements.html": "Announcements | FDMI Church, Adjen-Kotoku, Accra",
@@ -726,10 +732,10 @@ pages["about.html"] = page("about.html", "About the church",
   <div class="narrow">
     {head_c("Life at FDMI", "Worship, Word and family")}
     <div class="img-cards">
-      <a class="card img-card" href="ministries.html#worship"><img src="assets/photos/worship-team.jpg" alt="" loading="lazy" style="object-position:50% 45%"><span>Worship</span></a>
+      <a class="card img-card" href="ministries.html#music"><img src="assets/photos/worship-team.jpg" alt="" loading="lazy" style="object-position:50% 45%"><span>Worship</span></a>
       <a class="card img-card" href="sermons.html"><img src="assets/photos/hands-raised.jpg" alt="" loading="lazy"><span>The Word</span></a>
       <a class="card img-card" href="ministries.html#prayer"><img src="assets/photos/white-service-4.jpg" alt="" loading="lazy"><span>Prayer</span></a>
-      <a class="card img-card" href="ministries.html#children"><img src="assets/photos/child-dedication.jpg" alt="" loading="lazy" style="object-position:50% 25%"><span>Family</span></a>
+      <a class="card img-card" href="ministries.html#women"><img src="assets/photos/child-dedication.jpg" alt="" loading="lazy" style="object-position:50% 25%"><span>Family</span></a>
     </div>
     <div class="h-actions"><a class="btn btn-dark" href="leaders.html">Meet our leaders</a></div>
   </div>
@@ -761,8 +767,8 @@ pages["leaders.html"] = page("leaders.html", "Leaders",
 <section class="h-sec">
   <div class="narrow">
     {head_c("Leadership", "Our pastors")}
-    {profile("assets/victor-annan.jpg", "50% 15%", "Head of the ministry", "Apostle Victor Annan", "A minister of the Gospel of our Lord Jesus Christ, Apostle Annan leads the ministry with a deep prophetic and apostolic grace, and a heart to see faith demonstrated in everyday lives.")}
-    {profile("assets/natalie-annan.jpg", "50% 20%", "Ministers alongside the Apostle", "Rev. Mrs Natalie Annan", "Rev. Mrs Annan serves alongside the Apostle, caring for the church family and ministering in worship and the Word.", flip=True)}
+    {profile("assets/victor-annan.jpg", "50% 8%", "Head of the ministry", "Apostle Victor Annan", "A minister of the Gospel of our Lord Jesus Christ, Apostle Annan leads the ministry with a deep prophetic and apostolic grace, and a heart to see faith demonstrated in everyday lives.")}
+    {profile("assets/natalie-annan.jpg", "50% 12%", "Ministers alongside the Apostle", "Rev. Mrs Natalie Annan", "Rev. Mrs Annan serves alongside the Apostle, caring for the church family and ministering in worship and the Word.", flip=True)}
   </div>
 </section>
 
@@ -802,7 +808,7 @@ min_cards = "\n".join(f'''      <article class="card ministry-card" id="{mid}">
       </article>''' for mid, name, img, pos, text, msg in MINISTRIES)
 
 pages["ministries.html"] = page("ministries.html", "Ministries",
-    "Worship, prayer, youth, children, and outreach and welfare at Faith Demonstration Ministries International, Adjen-Kotoku, Accra.",
+    "Music, prayer, missions and outreach, women, men, hospitality, and protocol and ushering ministries at Faith Demonstration Ministries International, Accra.",
     f'''{page_hero("assets/photos/youth-night.jpg", "50% 40%", "Ministries", "A place for everyone to serve", "Find where you fit, then message us on WhatsApp to get involved.")}
 
 <section class="h-sec h-tint">
@@ -1092,7 +1098,7 @@ OG_CARDS = {
     "index": ("Faith Demonstration Ministries International", "A prophetic and apostolic church in Adjen-Kotoku, Accra", "photos/worship-team.jpg", "50% 40%"),
     "about": ("About the church", "To raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation", "photos/church-family.jpg", "50% 35%"),
     "leaders": ("Leaders", "Apostle Victor Annan, Rev. Mrs Natalie Annan and the ministry team", "photos/consecration.jpg", "50% 25%"),
-    "ministries": ("Ministries", "Worship, prayer, youth, children, and outreach and welfare", "photos/youth-night.jpg", "50% 40%"),
+    "ministries": ("Ministries", "Music, prayer, missions, women, men, hospitality, protocol and ushering", "photos/worship-team.jpg", "50% 45%"),
     "sermons": ("Sermons", "Divine Service on Sundays and Study His Word on Tuesdays", "photos/hands-raised.jpg", "50% 40%"),
     "events": ("At His Feet: worship all night", "Friday 4 December 2026, from 8:00 PM", "at-his-feet-flyer.jpg", "50% 22%"),
     "announcements": ("Announcements", "News for the FDMI church family", "photos/sunday-service.jpg", "40% 50%"),

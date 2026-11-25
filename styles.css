@@ -802,3 +802,4 @@ h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
   .leader-card-img img, .sermon-card-img img, .gallery-card img { aspect-ratio: 4 / 3; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }
+@media (max-width: 640px) { .member-grid { grid-template-columns: 1fr 1fr; gap: .8rem; } }
