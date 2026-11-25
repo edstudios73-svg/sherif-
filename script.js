@@ -2,112 +2,83 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
 // ---------- Mobile menu ----------
-const menuBtn = $(".menu-btn");
-const nav = $("#nav");
-function setMenu(open) {
-  nav.classList.toggle("open", open);
-  menuBtn.setAttribute("aria-expanded", String(open));
-  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-}
-menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
-nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+const toggle = $(".menu-toggle");
+const setNav = (open) => {
+  document.body.classList.toggle("nav-open", open);
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.textContent = open ? "Close" : "Menu";
+};
+toggle.addEventListener("click", () => setNav(!document.body.classList.contains("nav-open")));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+matchMedia("(min-width: 961px)").addEventListener("change", (e) => { if (e.matches) setNav(false); });
 
-// ---------- Phone tab bar: mark the current page ----------
-const here = location.pathname.split("/").pop() || "index.html";
-$$(".tabbar a").forEach((a) => {
-  if (a.getAttribute("href").split("#")[0] === here) a.classList.add("current");
-});
-
-// ---------- Service times: highlight today (Ghana time = UTC) ----------
+// ---------- Mark today's meeting (Ghana is on UTC) ----------
 const today = new Date().getUTCDay();
-$$(".times").forEach((table) => {
-  const note = table.nextElementSibling;
-  const rows = $$(".times-row[data-day]", table);
-  const row = rows.find((r) => Number(r.dataset.day) === today);
-  const txt = (r, c) => $(c, r).textContent;
-  if (row) {
-    row.classList.add("is-today");
-    note.textContent = `There's a meeting today: ${txt(row, ".t-name")}, ${txt(row, ".t-time")}. We'd love to see you.`;
-  } else {
-    const next = rows
-      .map((r) => ({ r, d: (Number(r.dataset.day) - today + 7) % 7 }))
-      .sort((a, b) => a.d - b.d)[0].r;
-    note.textContent = `Next meeting: ${txt(next, ".t-day")}, ${txt(next, ".t-name")} at ${txt(next, ".t-time")}.`;
+$$(`.times li[data-day="${today}"]`).forEach((li) => li.classList.add("is-today"));
+
+// ---------- Event: time until it starts ----------
+$$(".event[data-start]").forEach((ev) => {
+  const out = $("[data-countdown]", ev);
+  const start = new Date(ev.dataset.start);
+  const end = new Date(ev.dataset.end);
+  const update = () => {
+    const now = new Date();
+    if (now >= end) { out.textContent = "Took place"; return; }
+    if (now >= start) { out.textContent = "Happening now"; return; }
+    const days = Math.floor((start - now) / 86400000);
+    out.textContent = days === 0 ? "Tonight" : days === 1 ? "Tomorrow" : `In ${days} days`;
+  };
+  update();
+  setInterval(update, 60000);
+
+  // Add to calendar (.ics)
+  const ics = $("[data-ics]", ev);
+  if (ics) {
+    const fmt = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    const body = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//FDMI//Events//EN",
+      "BEGIN:VEVENT", "UID:at-his-feet-2026@fdmi",
+      `DTSTAMP:${fmt(new Date())}`, `DTSTART:${fmt(start)}`, `DTEND:${fmt(end)}`,
+      "SUMMARY:At His Feet: worship all night (FDMI)",
+      "LOCATION:Church premises\\, last stop Adjen-Kotoku\\, next to Pick N Nikki School\\, Accra",
+      "DESCRIPTION:Call 059 660 9093 or 020 171 3589",
+      "END:VEVENT", "END:VCALENDAR",
+    ].join("\r\n");
+    ics.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(body);
   }
-  if (note && note.classList.contains("today-note")) note.hidden = false;
 });
 
-// ---------- At His Feet countdown ----------
-// Friday 4 December 2026, 8:00 PM Ghana time (GMT, UTC+0). All night.
-const START = new Date("2026-12-04T20:00:00Z");
-const END = new Date("2026-12-05T05:00:00Z");
-const cd = $("#countdown");
-if (cd) {
-  const cdMsg = $("#countdown-msg");
-  const cells = Object.fromEntries($$("[data-u]", cd).map((el) => [el.dataset.u, el]));
-  const pad = (n) => String(n).padStart(2, "0");
-  let timer;
-  const tick = () => {
-    const now = new Date();
-    if (now >= START) {
-      cd.hidden = true;
-      cdMsg.hidden = false;
-      cdMsg.textContent = now >= END
-        ? "Thank you to everyone who worshipped with us. Watch this space for the next service."
-        : "Happening now. Come and worship with us all night.";
-      clearInterval(timer);
-      return;
-    }
-    const s = Math.floor((START - now) / 1000);
-    cells.d.textContent = Math.floor(s / 86400);
-    cells.h.textContent = pad(Math.floor((s % 86400) / 3600));
-    cells.m.textContent = pad(Math.floor((s % 3600) / 60));
-    cells.s.textContent = pad(s % 60);
-  };
-  tick();
-  timer = setInterval(tick, 1000);
-}
-
-// ---------- Add to calendar (.ics) ----------
-const cal = $("#add-calendar");
-if (cal) {
-  const fmt = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  const ics = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//FDMI//At His Feet//EN",
-    "BEGIN:VEVENT", "UID:at-his-feet-2026@fdmi",
-    `DTSTAMP:${fmt(new Date())}`, `DTSTART:${fmt(START)}`, `DTEND:${fmt(END)}`,
-    "SUMMARY:At His Feet: Worship All Night (FDMI)",
-    "LOCATION:Church premises\\, last stop Adjen-Kotoku\\, next to Pick N Nikki School\\, Accra",
-    "DESCRIPTION:Info: +233 59 660 9093 / +233 20 171 3589",
-    "END:VEVENT", "END:VCALENDAR",
-  ].join("\r\n");
-  cal.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-}
-
-// ---------- Gallery lightbox ----------
+// ---------- Lightbox ----------
 const lb = $("#lightbox");
 if (lb) {
-  const items = $$("[data-lightbox]");
+  const links = $$("[data-lightbox]");
   const img = $("img", lb);
   const cap = $("figcaption", lb);
   let i = 0;
-  let lastFocus;
+  let opener = null;
   const show = (n) => {
-    i = (n + items.length) % items.length;
-    img.src = items[i].href;
-    img.alt = $("img", items[i]).alt;
-    cap.textContent = img.alt;
+    i = (n + links.length) % links.length;
+    const thumb = $("img", links[i]);
+    img.src = links[i].href;
+    img.alt = thumb.alt;
+    cap.textContent = thumb.alt;
   };
-  const close = () => { lb.hidden = true; document.body.style.overflow = ""; lastFocus && lastFocus.focus(); };
-  items.forEach((a, n) => a.addEventListener("click", (e) => {
+  const close = () => {
+    lb.hidden = true;
+    document.body.style.overflow = "";
+    if (opener) opener.focus();
+  };
+  links.forEach((a, n) => a.addEventListener("click", (e) => {
     e.preventDefault();
-    lastFocus = a;
+    opener = a;
     show(n);
     lb.hidden = false;
     document.body.style.overflow = "hidden";
     $(".lb-close", lb).focus();
   }));
+  const single = links.length < 2;
+  $(".lb-prev", lb).hidden = single;
+  $(".lb-next", lb).hidden = single;
   $(".lb-close", lb).addEventListener("click", close);
   $(".lb-prev", lb).addEventListener("click", () => show(i - 1));
   $(".lb-next", lb).addEventListener("click", () => show(i + 1));
@@ -115,18 +86,17 @@ if (lb) {
   document.addEventListener("keydown", (e) => {
     if (lb.hidden) return;
     if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") show(i - 1);
-    if (e.key === "ArrowRight") show(i + 1);
+    if (e.key === "ArrowLeft" && !single) show(i - 1);
+    if (e.key === "ArrowRight" && !single) show(i + 1);
   });
-  // Swipe on phones
   let x0 = null;
   lb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener("touchend", (e) => {
-    if (x0 === null) return;
+    if (x0 === null || single) return;
     const dx = e.changedTouches[0].clientX - x0;
     if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1));
     x0 = null;
   });
 }
 
-$("#year").textContent = new Date().getFullYear();
+$$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
