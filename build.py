@@ -42,6 +42,16 @@ SERVICES = [  # (weekday 0=Sun, day, meeting, time)
 ]
 
 
+def slug(t):
+    import re
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+
+
+def strip_tags(h):
+    import re
+    return re.sub(r"<[^>]+>", "", h)
+
+
 def wa(text):
     return f"{WA}?text={quote(text)}"
 
@@ -204,6 +214,12 @@ ANNOUNCEMENTS = [  # (date label, title, body html, (link, label) or None)
      None),
 ]
 
+SUMMARIES = {  # short versions of announcements for the home page
+    "At His Feet: worship all night": "A night of worship on Friday 4 December from 8:00 PM. Everyone is welcome.",
+    "Church building project": "We are raising support to build a permanent home for the church.",
+    "Send your prayer requests": "Send a prayer request at any time on WhatsApp.",
+}
+
 MINISTRIES = [  # (id, name, photo, object-position, text, WhatsApp message)
     ("worship", "Worship", "assets/photos/worship-team.jpg", "50% 45%",
      "The worship team leads the house in praise at every service, and through the night at all-night worship services like At His Feet.",
@@ -239,6 +255,10 @@ GALLERY = [  # (file in assets/photos, caption)
     ("clergy-vestments", "Shepherds of the house"),
     ("white-service-3", "Standing together in prayer"),
     ("white-service-4", "Prayer under the FDMI letters"),
+    ("hands-raised", "Hands raised in worship"),
+    ("sunday-service", "A Sunday service"),
+    ("fellowship-in-white", "Fellowship in white"),
+    ("studio-visit", "At the studio"),
 ]
 
 TEAM = [  # (photo, position, name) - add names when confirmed
@@ -281,7 +301,7 @@ def announcement(a, compact=False):
             <p class="notice-date">{date}</p>
             <p class="notice-title">{title}</p>
           </li>'''
-    return f'''    <article class="notice-full">
+    return f'''    <article class="notice-full" id="{slug(title)}">
       <p class="notice-date">{date}</p>
       <div>
         <h2>{title}</h2>
@@ -336,43 +356,42 @@ pages["index.html"] = page("index.html", "Home",
   </div>
 </section>
 
-<section class="section">
-  <div class="container split">
-    <div class="split-text">
-      <h2>You're welcome here</h2>
-      <p class="lead">We are a family of believers who gather to worship, to hear the undiluted Word of God and to see it at work in everyday lives.</p>
-      <p>Our vision is to raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation. Whether you have walked with Jesus for years or are only beginning to ask questions, there is a seat for you.</p>
-      <a class="text-link" href="about.html">About the church</a>
-    </div>
-    <figure class="split-photo">
-      <img src="assets/photos/worship-team.jpg" alt="The worship team singing on stage in front of the F D M I letters" loading="lazy">
-    </figure>
-  </div>
-</section>
-
-<section class="section section-tint">
+<section class="section home-sec">
   <div class="container">
     <div class="sec-head">
-      <h2>Coming up</h2>
-      <a class="text-link" href="events.html">All events</a>
+      <h2><a href="about.html">About the church</a></h2>
+      <a class="text-link" href="about.html">Our story and vision</a>
     </div>
-    <div class="upcoming">
-    {event_feature()}
-      <div class="notices-side">
-        <h3 class="side-h">Announcements</h3>
-        <ul class="notices">
-{chr(10).join(announcement(a, compact=True) for a in ANNOUNCEMENTS[1:3])}
-        </ul>
-        <a class="text-link" href="announcements.html">All announcements</a>
+    <div class="split">
+      <div class="split-text">
+        <p class="lead">We are a family of believers who gather to worship, to hear the undiluted Word of God and to see it at work in everyday lives.</p>
+        <p>Our vision is to raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation. Whether you have walked with Jesus for years or are only beginning to ask questions, there is a seat for you.</p>
       </div>
+      <a class="split-photo" href="about.html" tabindex="-1" aria-hidden="true">
+        <img src="assets/photos/sunday-service.jpg" alt="" loading="lazy">
+      </a>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="feature-band">
+  <a class="band-photo" href="leaders.html" tabindex="-1" aria-hidden="true"><img src="assets/photos/consecration.jpg" alt="" loading="lazy" style="object-position:50% 25%"></a>
+  <div class="feature-band-text">
+    <h2><a href="leaders.html">Leaders</a></h2>
+    <p>The ministry is led by Apostle Victor Annan, with Rev. Mrs Natalie Annan ministering alongside him and a team of elders and officers serving the church family.</p>
+    <ul class="faces" aria-hidden="true">
+      <li><img src="assets/victor-annan.jpg" alt="" loading="lazy"></li>
+      <li><img src="assets/natalie-annan.jpg" alt="" loading="lazy"></li>
+{chr(10).join(f'      <li><img src="{t[0]}" alt="" loading="lazy"></li>' for t in TEAM)}
+    </ul>
+    <a class="text-link text-link-light" href="leaders.html">Meet our leaders</a>
+  </div>
+</section>
+
+<section class="section home-sec">
   <div class="container">
     <div class="sec-head">
-      <h2>Ministries</h2>
+      <h2><a href="ministries.html">Ministries</a></h2>
       <a class="text-link" href="ministries.html">All ministries</a>
     </div>
     <div class="tiles">
@@ -381,26 +400,82 @@ pages["index.html"] = page("index.html", "Home",
   </div>
 </section>
 
-<section class="feature-band">
-  <img src="assets/photos/consecration.jpg" alt="Laying on of hands at FDMI" loading="lazy" style="object-position:50% 25%">
-  <div class="feature-band-text">
-    <h2>Led by Apostle Victor Annan</h2>
-    <p>Apostle Victor Annan leads the ministry with a deep prophetic and apostolic grace, with Rev. Mrs Natalie Annan ministering alongside him.</p>
-    <a class="text-link text-link-light" href="leaders.html">Meet our leaders</a>
+<section class="section section-tint home-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2><a href="sermons.html">Sermons</a></h2>
+      <a class="text-link" href="sermons.html">Watch and listen</a>
+    </div>
+    <div class="split split-photo-left">
+      <a class="split-photo" href="sermons.html" tabindex="-1" aria-hidden="true">
+        <img src="assets/photos/hands-raised.jpg" alt="" loading="lazy">
+      </a>
+      <div class="split-text">
+        <p class="lead">The undiluted Word of God, preached every Sunday at Divine Service and taught every Tuesday at Study His Word.</p>
+        <p>Missed a service? Catch up on messages on our YouTube and Facebook pages.</p>
+        <ul class="mini-times">
+          <li><span>Sunday</span>Divine Service, 8:30 AM</li>
+          <li><span>Tuesday</span>Study His Word, 6:00 PM</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="container split split-even">
-    <div class="split-text">
-      <h2>Missed a Sunday?</h2>
-      <p>Catch up on messages from Divine Service and Study His Word on our pages.</p>
-      <a class="text-link" href="sermons.html">Sermons</a>
+<section class="section home-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2><a href="events.html">Events</a></h2>
+      <a class="text-link" href="events.html">All events</a>
     </div>
-    <div class="split-text">
-      <h2>Find us</h2>
-      <p>{ADDRESS}.<br>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a>.<br>Call {phones_html()}.</p>
+    {event_feature()}
+  </div>
+</section>
+
+<section class="section section-tint home-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2><a href="announcements.html">Announcements</a></h2>
+      <a class="text-link" href="announcements.html">All announcements</a>
+    </div>
+    <div class="notice-cols">
+{chr(10).join(f"""      <a class="notice-col" href="announcements.html#{slug(a[1])}">
+        <p class="notice-date">{a[0]}</p>
+        <h3>{a[1]}</h3>
+        <p>{SUMMARIES.get(a[1], strip_tags(a[2]))}</p>
+      </a>""" for a in ANNOUNCEMENTS[:3])}
+    </div>
+  </div>
+</section>
+
+<section class="section home-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2><a href="gallery.html">Gallery</a></h2>
+      <a class="text-link" href="gallery.html">See all photos</a>
+    </div>
+    <div class="mosaic">
+{chr(10).join(f'      <a href="gallery.html" class="mosaic-{n}"><img src="assets/photos/{f}.jpg" alt="{c}" loading="lazy"></a>' for n, (f, c) in enumerate([("church-family", "The FDMI family together"), ("worship-team", "Leading the house in worship"), ("youth", "Our young people"), ("fellowship-in-white", "Fellowship in white"), ("child-dedication", "Child dedication")], 1))}
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint home-sec">
+  <div class="container">
+    <div class="sec-head">
+      <h2><a href="visit.html">Plan a visit</a></h2>
       <a class="text-link" href="visit.html">Directions and what to expect</a>
+    </div>
+    <div class="split split-even visit-teaser">
+      <div class="split-text">
+        <p class="address">{ADDRESS}</p>
+        <p>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a><br>Call {phones_html()}</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="visit.html">Plan a visit</a>
+          <a class="btn btn-line" href="{DIRECTIONS}">Get directions</a>
+        </div>
+      </div>
+      {MAP}
     </div>
   </div>
 </section>
@@ -570,7 +645,7 @@ pages["sermons.html"] = page("sermons.html", "Sermons",
 </section>
 
 <section class="feature-band">
-  <img src="assets/photos/congregation-joy.jpg" alt="The congregation rejoicing during a service" loading="lazy" style="object-position:50% 30%">
+  <img src="assets/photos/sunday-service.jpg" alt="Ministry during a Sunday service" loading="lazy" style="object-position:50% 50%">
   <div class="feature-band-text">
     <h2>The undiluted Word</h2>
     <p>Preaching the undiluted Word of God is the first part of our mission. Every message points to Jesus and to faith that is lived out.</p>
