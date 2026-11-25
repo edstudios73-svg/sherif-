@@ -94,7 +94,8 @@ def footer():
           <img src="assets/fdmi-crest.jpg" alt="" width="48" height="48">
           <span class="brand-text"><strong>Faith Demonstration</strong><small>Ministries International</small></span>
         </a>
-        <p>Last stop, Adjen-Kotoku, next to Pick N Nikki School, Accra, Ghana. Call or WhatsApp 059 660 9093.</p>
+        <p>Last stop, Adjen-Kotoku, next to Pick N Nikki School, Accra, Ghana.</p>
+        <p class="foot-phones"><a href="tel:+233596609093">059 660 9093</a> &middot; <a href="tel:+233201713589">020 171 3589</a></p>
         <ul class="socials">
           <li><a href="https://www.facebook.com/search/top?q=FAITH%20Demonstration%20Ministries%20International" aria-label="Facebook">{svg("fb")}</a></li>
           <li><a href="https://www.instagram.com/apostlevictorannan" aria-label="Instagram">{svg("ig")}</a></li>
@@ -228,7 +229,7 @@ EVENT_CARD = f'''        <article class="event">
             <p class="countdown-msg" id="countdown-msg" hidden></p>
             <div class="event-actions">
               <a class="pill pill-wine" id="add-calendar" href="#" download="at-his-feet.ics">Add to calendar</a>
-              <a class="pill pill-line" href="tel:+233594708027">Call for info</a>
+              <a class="pill pill-line" href="tel:+233596609093">Call for info</a>
             </div>
           </div>
         </article>'''
@@ -241,7 +242,8 @@ FIND_DETAILS = '''<dl>
               <div><dt>Address</dt><dd>Last stop, Adjen-Kotoku (Medie-Kotoku area), Accra, Ghana</dd></div>
               <div><dt>Landmark</dt><dd>Next to Pick N Nikki School</dd></div>
               <div><dt>Phone</dt><dd><a href="tel:+233596609093">059 660 9093</a></dd></div>
-              <div><dt>Events</dt><dd><a href="tel:+233594708027">059 470 8027</a>, <a href="tel:+233506229589">050 622 9589</a></dd></div>
+              <div><dt>Phone</dt><dd><a href="tel:+233201713589">020 171 3589</a></dd></div>
+              <div><dt>WhatsApp</dt><dd><a href="https://wa.me/233596609093">059 660 9093</a></dd></div>
             </dl>'''
 
 DIRECTIONS = "https://www.google.com/maps/search/?api=1&amp;query=Pick+N+Nikki+School+Adjen+Kotoku+Accra"
@@ -277,6 +279,10 @@ GALLERY = [  # (file, caption, wide?)
     ("night-prayer", "Night of prayer", False),
     ("clergy-vestments", "Shepherds of the house", False),
     ("white-service-3", "Standing together in prayer", True),
+    ("worship-team", "Leading the house in worship", True),
+    ("youth-night", "Youth night", True),
+    ("family-celebration", "Family celebration", True),
+    ("white-service-4", "Prayer under the FDMI letters", True),
 ]
 
 
@@ -291,6 +297,17 @@ VIDEO = f'''<figure class="video-card">
             </video>
             <figcaption>Our children dancing for joy at a church celebration</figcaption>
           </figure>'''
+
+TEAM_MEMBERS = [  # (photo, position, name) - add names when confirmed
+    ("assets/people/church-elder.jpg", "Church Elder", ""),
+    ("assets/people/church-secretary.jpg", "Church Secretary", ""),
+]
+TEAM = "\n".join(
+    f'''          <article class="member">
+            <img src="{img}" alt="{name or 'FDMI ' + role}" width="440" height="440" loading="lazy">
+            <h3>{name or role}</h3>
+            {f'<p>{role}</p>' if name else ''}
+          </article>''' for img, role, name in TEAM_MEMBERS)
 
 # ---------------------------------------------------------------- pages
 pages = {}
@@ -321,7 +338,7 @@ pages["index.html"] = page("index.html",
           <p>Everything we do comes from the Word of God and is led by the Holy Spirit.</p>
         </header>
         <div class="photo-cards">
-{photo_card("assets/photos/white-service-1.jpg", "Worship", "Spirit-filled praise every service.", "about.html")}
+{photo_card("assets/photos/worship-team.jpg", "Worship", "Spirit-filled praise every service.", "about.html")}
 {photo_card("assets/photos/congregation-joy.jpg", "The Word", "Practical teaching at Study His Word.", "about.html", "50% 30%")}
 {photo_card("assets/photos/blessing.jpg", "Prayer", "Grace Hour and the Liberation Hour.", "about.html", "50% 35%")}
 {photo_card("assets/photos/child-dedication.jpg", "Family", "A home for every age.", "about.html", "50% 25%")}
@@ -425,7 +442,7 @@ pages["about.html"] = page("about.html", "About us",
           <h2>Four things that shape us</h2>
         </header>
         <div class="photo-cards">
-{photo_card("assets/photos/white-service-1.jpg", "Worship", "Spirit-filled praise every service, and all-night worship on special nights.")}
+{photo_card("assets/photos/worship-team.jpg", "Worship", "Spirit-filled praise every service, and all-night worship on special nights.")}
 {photo_card("assets/photos/congregation-joy.jpg", "The Word", "Practical Bible teaching every Tuesday at Study His Word.", pos="50% 30%")}
 {photo_card("assets/photos/blessing.jpg", "Prayer", "Grace Hour on Wednesdays and the Liberation and Prophetic Hour on Fridays.", pos="50% 35%")}
 {photo_card("assets/photos/child-dedication.jpg", "Family", "Children, young people and parents growing in faith together.", pos="50% 25%")}
@@ -466,6 +483,19 @@ pages["leaders.html"] = page("leaders.html", "Our leaders",
     </section>
 
     <section class="section tint">
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow">Ministry team</p>
+          <h2>Serving the FDMI family</h2>
+          <p>The leaders who help keep the house running, week by week.</p>
+        </header>
+        <div class="team">
+{TEAM}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="wrap split">
         <div class="split-text">
           <p class="eyebrow eyebrow-left">Called and consecrated</p>

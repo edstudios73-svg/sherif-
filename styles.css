@@ -332,3 +332,13 @@ a.photo-card:hover { transform: translateY(-4px); box-shadow: 0 26px 46px -24px 
   .hero-img { animation: none; }
   .pill, .nav, .menu-btn span, .photo-card, .g-item img { transition: none; }
 }
+
+/* Ministry team */
+.team { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 240px)); justify-content: center; gap: 1.2rem; }
+.member { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); text-align: center; padding-bottom: 1.2rem; }
+.member img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; margin-bottom: 1rem; }
+.member h3 { font: 700 1.2rem/1.2 var(--serif); color: var(--night); padding-inline: 1rem; }
+.member p { color: var(--gold); font-weight: 700; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-top: .3rem; }
+.foot-phones { margin-top: -.6rem; }
+.foot-phones a { color: #fff; font-weight: 600; text-decoration: none; }
+@media (max-width: 600px) { .team { grid-template-columns: 1fr 1fr; gap: .7rem; } .member h3 { font-size: 1rem; } }

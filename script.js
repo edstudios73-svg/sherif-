@@ -79,7 +79,7 @@ if (cal) {
     `DTSTAMP:${fmt(new Date())}`, `DTSTART:${fmt(START)}`, `DTEND:${fmt(END)}`,
     "SUMMARY:At His Feet: Worship All Night (FDMI)",
     "LOCATION:Church premises\\, last stop Adjen-Kotoku\\, next to Pick N Nikki School\\, Accra",
-    "DESCRIPTION:Info: +233 59 470 8027 / +233 50 622 9589",
+    "DESCRIPTION:Info: +233 59 660 9093 / +233 20 171 3589",
     "END:VEVENT", "END:VCALENDAR",
   ].join("\r\n");
   cal.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
