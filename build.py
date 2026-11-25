@@ -608,269 +608,413 @@ pages["index.html"] = page("index.html", "Home",
 {LIGHTBOX}''', preload="assets/photos/worship-team.jpg")
 
 
-pages["about.html"] = page("about.html", "About the church",
-    "Our vision is to raise an indigenous and self-supporting church and to demonstrate the love of God in our generation. Read FDMI's mission, focus and goals.",
-    f'''{page_head("About the church", "Faith Demonstration Ministries International is a prophetic and apostolic church at Adjen-Kotoku, Accra, led by Apostle Victor Annan.")}
+def page_hero(img, pos, kicker, title, sub):
+    return f'''<section class="page-hero">
+  <img class="page-hero-img" src="{img}" alt="" style="object-position:{pos}" fetchpriority="high">
+  <div class="narrow page-hero-body">
+    <p class="kicker kicker-light">{kicker}</p>
+    <h1>{title}</h1>
+    <p>{sub}</p>
+  </div>
+</section>'''
 
-<div class="container">
-  <figure class="wide-photo">
-    <img src="assets/photos/church-family.jpg" alt="The FDMI family gathered in front of the church banner" loading="lazy">
-  </figure>
-</div>
 
-<section class="section">
-  <div class="container prose-grid">
-    <h2>Our name</h2>
-    <div class="prose">
-      <p class="lead">Our name comes from the Apostle Paul's words to the church in Corinth.</p>
-      <blockquote class="scripture">
-        <p>My message and my preaching were not with wise and persuasive words, but with a demonstration of the Spirit's power, so that your faith might not rest on human wisdom, but on God's power.</p>
-        <cite>1 Corinthians 2:4–5</cite>
-      </blockquote>
-      <p>We want faith that is seen as well as spoken: in worship, in healing and restoration, and in families made whole.</p>
+def cta(title, text, href, label, alt_href=None, alt_label=None):
+    alt = f'\n        <a class="btn btn-ghost" href="{alt_href}">{alt_label}</a>' if alt_href else ""
+    return f'''<section class="h-sec">
+  <div class="narrow">
+    <div class="cta-box">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="{href}">{label}</a>{alt}
+      </div>
     </div>
   </div>
-</section>
+</section>'''
 
-<section class="vision">
-  <div class="container prose-grid">
-    <h2>Our vision</h2>
-    <p class="vision-text">To raise an indigenous and self&#8209;supporting church, and to demonstrate the love of God in our generation.</p>
+
+def times_card(rows=None):
+    rows = rows or SERVICES
+    body = "\n".join(f'        <tr data-day="{n}"><th scope="row">{d}</th><td>{m}</td><td class="t-time">{t}</td></tr>' for n, d, m, t in rows)
+    return f'''<div class="card table-card">
+      <table class="times-table">
+        <thead><tr><th scope="col">Day</th><th scope="col">Meeting</th><th scope="col">Time</th></tr></thead>
+        <tbody>
+{body}
+        </tbody>
+      </table>
+    </div>'''
+
+
+PRAYER_CTA = cta("Need prayer?", "Send your prayer request on WhatsApp at any time. Our ministers pray over every request.",
+                 wa("Hello, I would like to send a prayer request."), "Send a prayer request", "visit.html", "Plan a visit")
+
+# ---------------------------------------------------------------- About
+pages["about.html"] = page("about.html", "About the church",
+    "Our vision is to raise an indigenous and self-supporting church and to demonstrate the love of God in our generation. Read FDMI's mission, focus and goals.",
+    f'''{page_hero("assets/photos/church-family.jpg", "50% 30%", "About the church", "A family of faith in Adjen-Kotoku", "A prophetic and apostolic church in Accra, Ghana, led by Apostle Victor Annan.")}
+
+<section class="h-sec">
+  <div class="narrow">
+    <article class="card split-card">
+      <div class="split-card-img"><img src="assets/photos/sunday-service.jpg" alt="Ministry during a Sunday service at FDMI" loading="lazy" style="object-position:35% 50%"></div>
+      <div class="card-body">
+        <p class="kicker kicker-left">Who we are</p>
+        <h2>Faith that is shown, not only spoken</h2>
+        <p>We gather to worship, to hear the undiluted Word of God and to see it at work in everyday lives: in healing, in restoration and in families made whole.</p>
+        <p>Whether you have walked with Jesus for years or are only beginning to ask questions, there is a seat for you in the house.</p>
+      </div>
+    </article>
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div class="columns-3">
-      <div class="col">
-        <h2>Mission</h2>
-        <ol class="plain-list">
+<section class="h-sec h-dark">
+  <div class="narrow center">
+    <p class="kicker kicker-light">Our vision</p>
+    <p class="vision-statement">To raise an indigenous and self&#8209;supporting church, and to demonstrate the love of God in our generation.</p>
+  </div>
+</section>
+
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("What drives us", "Mission, focus and goals")}
+    <div class="three-cards">
+      <article class="card text-card">
+        <h3>Our mission</h3>
+        <ol class="num-list">
           <li>To preach the undiluted Word of God.</li>
           <li>Spiritual growth, numerical growth and financial growth.</li>
           <li>Equipping the saints of Christ (Ephesians 4:11–13).</li>
         </ol>
-      </div>
-      <div class="col">
-        <h2>Focus</h2>
-        <p>Our focus is the sub-communities around us, the youth and the children, training them with vocational skills.</p>
-      </div>
-      <div class="col">
-        <h2>Goals</h2>
-        <ol class="plain-list">
+      </article>
+      <article class="card text-card">
+        <h3>Our focus</h3>
+        <p>The sub-communities around us, the youth and the children, training them with vocational skills.</p>
+      </article>
+      <article class="card text-card">
+        <h3>Our goals</h3>
+        <ol class="num-list">
           <li>To reach the unreached.</li>
           <li>To help the less privileged.</li>
           <li>To help the aged.</li>
         </ol>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section section-tint">
-  <div class="container link-grid">
-    <a href="leaders.html"><h2>Leaders</h2><p>Apostle Victor Annan, Rev. Mrs Natalie Annan and the ministry team.</p></a>
-    <a href="ministries.html"><h2>Ministries</h2><p>Worship, prayer, youth, children, and outreach and welfare.</p></a>
-    <a href="gallery.html"><h2>Gallery</h2><p>Photos and video from life in the church.</p></a>
+<section class="h-sec">
+  <div class="narrow">
+    <figure class="card quote-card">
+      <p class="kicker">Our name</p>
+      <blockquote>My message and my preaching were not with wise and persuasive words, but with a demonstration of the Spirit's power, so that your faith might not rest on human wisdom, but on God's power.</blockquote>
+      <figcaption>1 Corinthians 2:4–5</figcaption>
+    </figure>
   </div>
-</section>''')
+</section>
 
-team_cards = "\n".join(
-    f'''      <figure class="member">
-        <img src="{img}" alt="{name or 'FDMI ' + role}" width="440" height="440" loading="lazy">
-        <figcaption>{f"<strong>{name}</strong>{role}" if name else f"<strong>{role}</strong>"}</figcaption>
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Life at FDMI", "Worship, Word and family")}
+    <div class="img-cards">
+      <a class="card img-card" href="ministries.html#worship"><img src="assets/photos/worship-team.jpg" alt="" loading="lazy" style="object-position:50% 45%"><span>Worship</span></a>
+      <a class="card img-card" href="sermons.html"><img src="assets/photos/hands-raised.jpg" alt="" loading="lazy"><span>The Word</span></a>
+      <a class="card img-card" href="ministries.html#prayer"><img src="assets/photos/white-service-4.jpg" alt="" loading="lazy"><span>Prayer</span></a>
+      <a class="card img-card" href="ministries.html#children"><img src="assets/photos/child-dedication.jpg" alt="" loading="lazy" style="object-position:50% 25%"><span>Family</span></a>
+    </div>
+    <div class="h-actions"><a class="btn btn-dark" href="leaders.html">Meet our leaders</a></div>
+  </div>
+</section>
+
+{PRAYER_CTA}''')
+
+# ---------------------------------------------------------------- Leaders
+def profile(img, pos, role, name, text, flip=False):
+    return f'''<article class="card profile-card{' profile-flip' if flip else ''}">
+      <div class="profile-img"><img src="{img}" alt="{name}" loading="lazy" style="object-position:{pos}"></div>
+      <div class="card-body">
+        <p class="kicker kicker-left">{role}</p>
+        <h2>{name}</h2>
+        <p>{text}</p>
+      </div>
+    </article>'''
+
+
+members = "\n".join(f'''      <figure class="card member-card">
+        <img src="{img}" alt="{name or 'FDMI ' + role}" loading="lazy">
+        <figcaption><strong>{name or role}</strong>{f"<span>{role}</span>" if name else "<span>Faith Demonstration Ministries International</span>"}</figcaption>
       </figure>''' for img, role, name in TEAM)
 
 pages["leaders.html"] = page("leaders.html", "Leaders",
     "Meet the leadership of Faith Demonstration Ministries International: Apostle Victor Annan, Rev. Mrs Natalie Annan and the ministry team.",
-    f'''{page_head("Leaders", "The men and women God has given to lead and care for the FDMI family.")}
+    f'''{page_hero("assets/photos/consecration.jpg", "50% 25%", "Our leadership", "Shepherds of the house", "The men and women God has given to lead and care for the FDMI family.")}
 
-<section class="section section-top-tight">
-  <div class="container leaders">
-    <article class="leader">
-      <img src="assets/victor-annan.jpg" alt="Apostle Victor Annan" width="440" height="440" loading="lazy">
-      <div class="leader-text">
-        <p class="role">Head of the ministry</p>
-        <h2>Apostle Victor Annan</h2>
-        <p>A minister of the Gospel of our Lord Jesus Christ, Apostle Annan leads the ministry with a deep prophetic and apostolic grace, and a heart to see faith demonstrated in everyday lives.</p>
-      </div>
-    </article>
-    <article class="leader">
-      <img src="assets/natalie-annan.jpg" alt="Rev. Mrs Natalie Annan" width="440" height="440" loading="lazy">
-      <div class="leader-text">
-        <p class="role">Ministers alongside the Apostle</p>
-        <h2>Rev. Mrs Natalie Annan</h2>
-        <p>Rev. Mrs Annan serves alongside the Apostle, caring for the church family and ministering in worship and the Word.</p>
-      </div>
-    </article>
+<section class="h-sec">
+  <div class="narrow">
+    {head_c("Leadership", "Our pastors")}
+    {profile("assets/victor-annan.jpg", "50% 15%", "Head of the ministry", "Apostle Victor Annan", "A minister of the Gospel of our Lord Jesus Christ, Apostle Annan leads the ministry with a deep prophetic and apostolic grace, and a heart to see faith demonstrated in everyday lives.")}
+    {profile("assets/natalie-annan.jpg", "50% 20%", "Ministers alongside the Apostle", "Rev. Mrs Natalie Annan", "Rev. Mrs Annan serves alongside the Apostle, caring for the church family and ministering in worship and the Word.", flip=True)}
   </div>
 </section>
 
-<section class="section section-tint">
-  <div class="container">
-    <div class="sec-head"><h2>Ministry team</h2></div>
-    <div class="team">
-{team_cards}
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Ministry team", "Serving the FDMI family", "The elders and officers who keep the house running, week by week.")}
+    <div class="member-grid">
+{members}
     </div>
   </div>
 </section>
 
-<section class="feature-band">
-  <img src="assets/photos/clergy-vestments.jpg" alt="Two ministers in clerical robes at FDMI" loading="lazy" style="object-position:50% 20%">
-  <div class="feature-band-text">
-    <h2>Set apart to serve</h2>
-    <p>Our ministers are prayed over and set apart before the congregation, so the whole church stands with them in the work God has given them.</p>
-  </div>
-</section>''')
-
-min_rows = "\n".join(f'''    <article class="ministry" id="{mid}">
-      <img src="{img}" alt="" loading="lazy" style="object-position:{pos}">
-      <div class="ministry-text">
-        <h2>{name}</h2>
-        <p>{text}</p>
-        <a class="btn btn-line btn-sm" href="{wa(msg)}">Get involved</a>
+<section class="h-sec">
+  <div class="narrow">
+    <article class="card split-card">
+      <div class="split-card-img"><img src="assets/photos/clergy-vestments.jpg" alt="Two ministers in clerical robes at FDMI" loading="lazy" style="object-position:50% 18%"></div>
+      <div class="card-body">
+        <p class="kicker kicker-left">Called and consecrated</p>
+        <h2>Set apart to serve</h2>
+        <p>Our ministers are prayed over and set apart before the congregation, so the whole church stands with them in the work God has given them.</p>
+        <a class="btn btn-outline" href="gallery.html">See the gallery</a>
       </div>
-    </article>''' for mid, name, img, pos, text, msg in MINISTRIES)
+    </article>
+  </div>
+</section>
+
+{cta("Speak with a leader", "To arrange a meeting, counselling or prayer with one of our pastors, call or send us a message.", WA, "Message us on WhatsApp", f"tel:{PHONES[0][1]}", f"Call {PHONES[0][0]}")}''')
+
+# ---------------------------------------------------------------- Ministries
+min_cards = "\n".join(f'''      <article class="card ministry-card" id="{mid}">
+        <img src="{img}" alt="" loading="lazy" style="object-position:{pos}">
+        <div class="card-body">
+          <h2>{name}</h2>
+          <p>{text}</p>
+          <a class="btn btn-outline" href="{wa(msg)}">Get involved</a>
+        </div>
+      </article>''' for mid, name, img, pos, text, msg in MINISTRIES)
 
 pages["ministries.html"] = page("ministries.html", "Ministries",
     "Worship, prayer, youth, children, and outreach and welfare at Faith Demonstration Ministries International, Adjen-Kotoku, Accra.",
-    f'''{page_head("Ministries", "There is a place for everyone to serve. Read about each ministry, then message us on WhatsApp to get involved.")}
+    f'''{page_hero("assets/photos/youth-night.jpg", "50% 40%", "Ministries", "A place for everyone to serve", "Find where you fit, then message us on WhatsApp to get involved.")}
 
-<div class="container">
-  <nav class="jump" aria-label="Ministries on this page">
-    {"".join(f'<a href="#{m[0]}">{m[1]}</a>' for m in MINISTRIES)}
-  </nav>
-</div>
-
-<section class="section section-top-tight">
-  <div class="container ministries">
-{min_rows}
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Our ministries", "Serve with us")}
+    <div class="ministry-grid">
+{min_cards}
+    </div>
   </div>
-</section>''')
+</section>
 
-platform_notes = ["Services and messages", "Live services and clips", "Photos and short clips", "Short clips from services"]
+{cta("Not sure where you fit?", "Tell us a little about yourself and we will help you find the right ministry.", wa("Hello, I would like to serve at FDMI."), "Message us on WhatsApp")}''')
+
+# ---------------------------------------------------------------- Sermons
+PLATFORM_ICONS = {
+    "YouTube": '<rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor"/>',
+    "Facebook": '<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/>',
+    "Instagram": '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>',
+    "TikTok": '<path d="M14 3v11a4 4 0 1 1-4-4"/><path d="M14 3c0 3 2 5 5 5"/>',
+}
+platform_cards = "\n".join(f'''      <a class="card platform-card" href="{u}">
+        <span class="explore-icon{" explore-gold" if i % 2 else ""}"><svg viewBox="0 0 24 24" aria-hidden="true">{PLATFORM_ICONS[n]}</svg></span>
+        <strong>{n}</strong>
+        <span>{note}</span>
+      </a>''' for i, ((n, u), note) in enumerate(zip(SOCIAL, ["Services and messages", "Live services and clips", "Photos and short clips", "Short clips from services"])))
+
 pages["sermons.html"] = page("sermons.html", "Sermons",
     "Watch and listen to messages from Faith Demonstration Ministries International, or join us for Divine Service on Sundays and Study His Word on Tuesdays.",
-    f'''{page_head("Sermons", "Messages from Divine Service and Study His Word. Watch online, or join us in person.")}
+    f'''{page_hero("assets/photos/hands-raised.jpg", "50% 40%", "Sermons", "Grow in the Word", "Messages from Divine Service and Study His Word. Watch online, or join us in person.")}
 
-<section class="section section-top-tight">
-  <div class="container split split-even">
-    <div>
-      <h2 class="h-sm">Watch and listen</h2>
-      <ul class="platforms">
-{chr(10).join(f'        <li><a href="{u}"><span class="platform-name">{n}</span><span class="platform-note">{note}</span></a></li>' for (n, u), note in zip(SOCIAL, platform_notes))}
-      </ul>
-    </div>
-    <div>
-      <h2 class="h-sm">Hear the Word in person</h2>
-      <ul class="times">
-        <li><span class="t-day">Sunday</span><span class="t-name">Divine Service</span><span class="t-time">8:30 – 11:00 AM</span></li>
-        <li><span class="t-day">Tuesday</span><span class="t-name">Study His Word</span><span class="t-time">6:00 – 8:30 PM</span></li>
-      </ul>
-      <p class="note">Recorded messages are shared on our pages after services. Follow us to see them first.</p>
+<section class="h-sec">
+  <div class="narrow">
+    <article class="card sermon-card">
+      <div class="sermon-card-img"><img src="assets/photos/sunday-service.jpg" alt="Ministry during a Sunday service" loading="lazy" style="object-position:40% 50%"></div>
+      <div class="card-body card-dark">
+        <p class="kicker kicker-left kicker-light">The undiluted Word</p>
+        <h2>Preaching that points to Jesus</h2>
+        <p>Preaching the undiluted Word of God is the first part of our mission. Every message points to Jesus and to faith that is lived out.</p>
+        <a class="btn btn-white" href="{SOCIAL[0][1]}">Watch on YouTube</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Online", "Watch and listen", "Recorded messages are shared on our pages after services.")}
+    <div class="platform-grid">
+{platform_cards}
     </div>
   </div>
 </section>
 
-<section class="feature-band">
-  <img src="assets/photos/sunday-service.jpg" alt="Ministry during a Sunday service" loading="lazy" style="object-position:50% 50%">
-  <div class="feature-band-text">
-    <h2>The undiluted Word</h2>
-    <p>Preaching the undiluted Word of God is the first part of our mission. Every message points to Jesus and to faith that is lived out.</p>
+<section class="h-sec">
+  <div class="narrow">
+    {head_c("In person", "Hear the Word with us", "Teaching services at the church premises, last stop Adjen-Kotoku.")}
+    {times_card([s for s in SERVICES if s[0] in (0, 2)])}
+    <div class="h-actions"><a class="btn btn-dark" href="visit.html">Plan your visit</a></div>
   </div>
 </section>''')
 
+# ---------------------------------------------------------------- Events
+e = EVENT
+ministers = "".join(f"<li>{n.strip()}</li>" for n in e["with"].replace(" and ", ", ").split(","))
 pages["events.html"] = page("events.html", "Events",
     "At His Feet: worship all night on Friday 4 December 2026 from 8:00 PM at FDMI, Adjen-Kotoku, Accra. Plus our weekly meetings.",
-    f'''{page_head("Events", "Special services and the weekly meetings of the church.")}
+    f'''{page_hero("assets/photos/night-prayer.jpg", "50% 35%", "Events", "What's coming up", "Special services, all-night worship and the weekly meetings of the church.")}
 
-<section class="section section-top-tight">
-  <div class="container">
-    {event_feature()}
-  </div>
-</section>
-
-<section class="section section-tint">
-  <div class="container split split-even">
-    <div>
-      <h2>Every week</h2>
-      <p>All meetings hold at the church premises, last stop Adjen-Kotoku.</p>
+<section class="h-sec">
+  <div class="narrow">
+    {head_c("Next special service", "At His Feet", "Worship all night")}
+    <article class="card event-page-card" id="at-his-feet" data-start="{e["start"]}" data-end="{e["end"]}">
+      <a class="event-poster" href="assets/at-his-feet-flyer.jpg" data-lightbox>
+        <img src="assets/at-his-feet-flyer.jpg" alt="At His Feet flyer: worship all night, Friday 4th December 2026, 8:00 PM" loading="lazy">
+        <span class="poster-hint">View full flyer</span>
+      </a>
+      <div class="card-body">
+        <p class="kicker kicker-left">Save the date</p>
+        <div class="count-tiles" data-tiles aria-label="Time until the service">
+          <div><b data-u="d">--</b><span>Days</span></div>
+          <div><b data-u="h">--</b><span>Hours</span></div>
+          <div><b data-u="m">--</b><span>Minutes</span></div>
+        </div>
+        <p class="count-msg" data-countdown></p>
+        <dl class="facts event-facts">
+          <div><dt>Date</dt><dd>{e["date"]}</dd></div>
+          <div><dt>Time</dt><dd>{e["time"]}, all night</dd></div>
+          <div><dt>Venue</dt><dd>{e["place"]}</dd></div>
+          <div><dt>GPS</dt><dd><a href="{GPS_URL}">{GPS}</a></dd></div>
+          <div><dt>Info</dt><dd>{phones_html()}</dd></div>
+        </dl>
+        <a class="btn btn-dark btn-block" data-ics href="#" download="at-his-feet.ics">Add to calendar</a>
+        <a class="btn btn-outline btn-block" href="{DIRECTIONS}">Get directions</a>
+      </div>
+    </article>
+    <div class="card ministers-card">
+      <h3>Ministering on the night</h3>
+      <ul class="chips">{ministers}</ul>
     </div>
-    {times_list()}
   </div>
 </section>
+
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Every week", "Our regular meetings", "All meetings hold at the church premises, last stop Adjen-Kotoku, Accra.")}
+    {times_card()}
+  </div>
+</section>
+
+<section class="h-sec">
+  <div class="narrow">
+    {head_c("Past services", "Moments from the house")}
+    <div class="photo-row">
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/white-service-2.jpg" alt="A night of prayer at FDMI" loading="lazy"></a>
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/consecration.jpg" alt="Laying on of hands" loading="lazy" style="object-position:50% 25%"></a>
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/family-celebration.jpg" alt="Family celebration" loading="lazy" style="object-position:50% 30%"></a>
+    </div>
+    <div class="h-actions"><a class="btn btn-outline" href="gallery.html">Open the gallery</a></div>
+  </div>
+</section>
+
+{cta("Bring someone with you", "Share this event with family and friends, or ask us about upcoming programmes.", wa("Hello, I would like to know about upcoming programmes at FDMI."), "Ask on WhatsApp")}
 {LIGHTBOX}''', extra_ld=[event_ld()])
+
+# ---------------------------------------------------------------- Announcements
+ann_cards = "\n".join(f'''    <article class="card ann-card" id="{slug(t)}">
+      <div class="ann-date">{d}</div>
+      <div class="card-body">
+        <h2>{t}</h2>
+        <p>{b}</p>
+        {f'<a class="btn btn-outline" href="{l[0]}">{l[1]}</a>' if l else ""}
+      </div>
+    </article>''' for d, t, b, l in ANNOUNCEMENTS)
 
 pages["announcements.html"] = page("announcements.html", "Announcements",
     "News and announcements from Faith Demonstration Ministries International, Adjen-Kotoku, Accra.",
-    f'''{page_head("Announcements", "News for the church family. For anything else, call or message the church.")}
+    f'''{page_hero("assets/photos/sunday-service.jpg", "40% 50%", "News", "Announcements", "News for the church family. For anything else, call or message the church.")}
 
-<section class="section section-top-tight">
-  <div class="container notices-page">
-{chr(10).join(announcement(a) for a in ANNOUNCEMENTS)}
+<section class="h-sec h-tint">
+  <div class="narrow ann-list">
+{ann_cards}
   </div>
-</section>''')
+</section>
 
+{PRAYER_CTA}''')
+
+# ---------------------------------------------------------------- Visit
+expect = [("A warm welcome", "You'll be greeted at the door and helped to a seat."),
+          ("Worship and the Word", "Services include praise, prayer and the preaching of the Word."),
+          ("Children welcome", "Children are part of the church family and welcome at every service."),
+          ("Prayer for you", "Tell an usher if you would like prayer, or message us before you come.")]
 pages["visit.html"] = page("visit.html", "Plan a visit",
     f"Visit Faith Demonstration Ministries International: {ADDRESS}. Service times, directions and contacts.",
-    f'''{page_head("Plan a visit", "We'd love to welcome you. Here is everything you need for your first visit.")}
+    f'''{page_hero("assets/photos/white-service-1.jpg", "50% 45%", "Plan a visit", "We'd love to welcome you", "Everything you need for your first visit to FDMI.")}
 
-<section class="section section-top-tight">
-  <div class="container split split-even">
-    <div>
-      <h2 class="h-sm">Service times</h2>
-      {times_list()}
-    </div>
-    <div>
-      <h2 class="h-sm">Address</h2>
-      <p class="address">{ADDRESS}, Ghana</p>
-      <p>Adzen, Ga West, Greater Accra<br>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a></p>
-      <p>Call {phones_html()}<br>WhatsApp <a href="{WA}">059 660 9093</a></p>
-      <div class="actions">
-        <a class="btn btn-dark" href="{DIRECTIONS}">Get directions</a>
-        <a class="btn btn-line" href="{WA}">Message us</a>
+<section class="h-sec" id="times">
+  <div class="narrow">
+    {head_c("Join us this week", "Service times", "All meetings hold at the church premises, last stop Adjen-Kotoku, Accra.")}
+    {times_card()}
+  </div>
+</section>
+
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Find us", "Where we are")}
+    <article class="card find-card">
+      {MAP}
+      <div class="card-body">
+        <h3>Find us in Adjen-Kotoku</h3>
+        <dl class="facts">
+          <div><dt>Address</dt><dd>{ADDRESS}</dd></div>
+          <div><dt>Area</dt><dd>Adzen, Ga West, Greater Accra</dd></div>
+          <div><dt>GhanaPostGPS</dt><dd><a href="{GPS_URL}">{GPS}</a></dd></div>
+          <div><dt>Landmark</dt><dd>Next to Pick N Nikki School</dd></div>
+          <div><dt>Phone</dt><dd>{phones_html()}</dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="{WA}">059 660 9093</a></dd></div>
+        </dl>
+        <a class="btn btn-dark btn-block" href="{DIRECTIONS}">Get directions on Google Maps</a>
+        <a class="btn btn-outline btn-block" href="{WA}">Message us on WhatsApp</a>
       </div>
+    </article>
+  </div>
+</section>
+
+<section class="h-sec">
+  <div class="narrow">
+    {head_c("Your first visit", "What to expect")}
+    <div class="expect-grid">
+{chr(10).join(f'      <article class="card text-card"><h3>{t}</h3><p>{x}</p></article>' for t, x in expect)}
     </div>
   </div>
 </section>
 
-<div class="container">
-  {MAP}
-</div>
+{PRAYER_CTA}''')
 
-<section class="section">
-  <div class="container prose-grid">
-    <h2>Your first visit</h2>
-    <div class="prose">
-      <p>You'll be greeted at the door and helped to a seat. Services include worship, prayer and the preaching of the Word.</p>
-      <p>Children are part of the church family and are welcome at every service.</p>
-      <p>If you would like prayer, tell an usher or send us a message before you come.</p>
-      <a class="text-link" href="{wa("Hello, I would like to send a prayer request.")}">Send a prayer request</a>
-    </div>
-  </div>
-</section>''')
-
+# ---------------------------------------------------------------- Gallery
 pages["gallery.html"] = page("gallery.html", "Gallery",
     "Photos and video from worship, prayer, celebrations and church life at Faith Demonstration Ministries International, Accra.",
-    f'''{page_head("Gallery", "Worship, prayer, celebrations and the FDMI family. Select a photo to view it full size.")}
+    f'''{page_hero("assets/photos/youth.jpg", "50% 35%", "Gallery", "Life in the house", "Worship, prayer, celebrations and the FDMI family. Select any photo to view it full size.")}
 
-<section class="section section-top-tight">
-  <div class="container">
-    <div class="gallery">
-{chr(10).join(gallery_fig(f, c) for f, c in GALLERY)}
+<section class="h-sec">
+  <div class="narrow-wide">
+    <div class="photo-grid">
+{chr(10).join(f'      <figure class="card photo-frame"><a href="assets/photos/{f}.jpg" data-lightbox><img src="assets/photos/{f}.jpg" alt="{c}" loading="lazy"></a><figcaption>{c}</figcaption></figure>' for f, c in GALLERY)}
     </div>
   </div>
 </section>
 
-<section class="section section-tint">
-  <div class="container split split-even">
-    <div>
-      <h2>Video</h2>
-      <p>Our children dancing for joy at a church celebration.</p>
+<section class="h-sec h-tint">
+  <div class="narrow">
+    {head_c("Video", "Children's celebration", "Our children dancing for joy at a church celebration.")}
+    <div class="card video-card">
+      <video controls preload="none" playsinline poster="assets/video/children-celebration.jpg">
+        <source src="assets/video/children-celebration.mp4" type="video/mp4">
+      </video>
     </div>
-    {VIDEO}
   </div>
 </section>
 {LIGHTBOX}''')
+
 
 out = Path(__file__).parent
 for name, html in pages.items():

@@ -23,9 +23,20 @@ $$("[data-start]").forEach((ev) => {
   const end = new Date(ev.dataset.end);
   const update = () => {
     const now = new Date();
-    if (now >= end) { out.textContent = "Took place"; return; }
-    if (now >= start) { out.textContent = "Happening now"; return; }
-    const days = Math.floor((start - now) / 86400000);
+    const hideTiles = () => { const t = $("[data-tiles]", ev); if (t) t.hidden = true; };
+    if (now >= end) { hideTiles(); out.textContent = "This service has taken place. Thank you for worshipping with us."; return; }
+    if (now >= start) { hideTiles(); out.textContent = "Happening now. Come and worship with us."; return; }
+    const ms = start - now;
+    const days = Math.floor(ms / 86400000);
+    const tiles = $("[data-tiles]", ev);
+    if (tiles) {
+      const set = (u, v) => { $(`[data-u="${u}"]`, tiles).textContent = v; };
+      set("d", days);
+      set("h", String(Math.floor((ms % 86400000) / 3600000)).padStart(2, "0"));
+      set("m", String(Math.floor((ms % 3600000) / 60000)).padStart(2, "0"));
+      out.textContent = "";
+      return;
+    }
     out.textContent = days === 0 ? "Tonight" : days === 1 ? "Tomorrow" : `In ${days} days`;
   };
   update();

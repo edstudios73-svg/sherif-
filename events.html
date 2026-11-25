@@ -264,49 +264,98 @@
   </div>
 </header>
 <main id="main">
-<section class="page-head">
-  <div class="container page-head-grid">
-    <h1>Events</h1>
-    <p class="page-head-intro">Special services and the weekly meetings of the church.</p>
+<section class="page-hero">
+  <img class="page-hero-img" src="assets/photos/night-prayer.jpg" alt="" style="object-position:50% 35%" fetchpriority="high">
+  <div class="narrow page-hero-body">
+    <p class="kicker kicker-light">Events</p>
+    <h1>What's coming up</h1>
+    <p>Special services, all-night worship and the weekly meetings of the church.</p>
   </div>
 </section>
 
-<section class="section section-top-tight">
-  <div class="container">
-    <article class="event event-full" id="at-his-feet" data-start="2026-12-04T20:00:00Z" data-end="2026-12-05T05:00:00Z">
-      <a class="event-flyer" href="assets/at-his-feet-flyer.jpg" data-lightbox>
-        <img src="assets/at-his-feet-flyer.jpg" alt="At His Feet flyer: worship all night, Friday 4th December 2026, 8:00 PM" width="720" height="1007" loading="lazy">
+<section class="h-sec">
+  <div class="narrow">
+    <header class="head-c">
+      <p class="kicker">Next special service</p>
+      <h2>At His Feet</h2>
+      <p class="head-sub">Worship all night</p>
+    </header>
+    <article class="card event-page-card" id="at-his-feet" data-start="2026-12-04T20:00:00Z" data-end="2026-12-05T05:00:00Z">
+      <a class="event-poster" href="assets/at-his-feet-flyer.jpg" data-lightbox>
+        <img src="assets/at-his-feet-flyer.jpg" alt="At His Feet flyer: worship all night, Friday 4th December 2026, 8:00 PM" loading="lazy">
+        <span class="poster-hint">View full flyer</span>
       </a>
-      <div class="event-body">
-        <p class="event-date"><time datetime="2026-12-04T20:00">Friday 4 December 2026</time><span data-countdown></span></p>
-        <h3 class="event-title">At His Feet</h3>
-        <p class="event-kind">Worship all night</p>
-        <dl class="event-meta">
-          <div><dt>Time</dt><dd>From 8:00 PM</dd></div>
-          <div><dt>Place</dt><dd>Church premises, last stop Adjen-Kotoku, next to Pick N Nikki School</dd></div>
-        </dl>
-        <p class="event-with"><span>Ministering</span> Bishop Victor Annan, Rev. Mrs Natalie Annan, Rose Adjei, Anita Binney, Pastor Albert Abekah, Lady Rev. Nana Serwaa Yeboah, Nana Ama and Abore Junior</p>
-        <div class="actions">
-          <a class="btn btn-dark" data-ics href="#" download="at-his-feet.ics">Add to calendar</a>
-          <a class="btn btn-line" href="tel:+233596609093">Call 059 660 9093</a>
+      <div class="card-body">
+        <p class="kicker kicker-left">Save the date</p>
+        <div class="count-tiles" data-tiles aria-label="Time until the service">
+          <div><b data-u="d">--</b><span>Days</span></div>
+          <div><b data-u="h">--</b><span>Hours</span></div>
+          <div><b data-u="m">--</b><span>Minutes</span></div>
         </div>
+        <p class="count-msg" data-countdown></p>
+        <dl class="facts event-facts">
+          <div><dt>Date</dt><dd>Friday 4 December 2026</dd></div>
+          <div><dt>Time</dt><dd>From 8:00 PM, all night</dd></div>
+          <div><dt>Venue</dt><dd>Church premises, last stop Adjen-Kotoku, next to Pick N Nikki School</dd></div>
+          <div><dt>GPS</dt><dd><a href="https://ghanapostgps.com/map/?gps=GW07065202">GW-0706-5202</a></dd></div>
+          <div><dt>Info</dt><dd><a href="tel:+233596609093">059 660 9093</a> or <a href="tel:+233201713589">020 171 3589</a></dd></div>
+        </dl>
+        <a class="btn btn-dark btn-block" data-ics href="#" download="at-his-feet.ics">Add to calendar</a>
+        <a class="btn btn-outline btn-block" href="https://www.google.com/maps/dir/?api=1&amp;destination=5.74170883,-0.35696792">Get directions</a>
       </div>
     </article>
+    <div class="card ministers-card">
+      <h3>Ministering on the night</h3>
+      <ul class="chips"><li>Bishop Victor Annan</li><li>Rev. Mrs Natalie Annan</li><li>Rose Adjei</li><li>Anita Binney</li><li>Pastor Albert Abekah</li><li>Lady Rev. Nana Serwaa Yeboah</li><li>Nana Ama</li><li>Abore Junior</li></ul>
+    </div>
   </div>
 </section>
 
-<section class="section section-tint">
-  <div class="container split split-even">
-    <div>
-      <h2>Every week</h2>
-      <p>All meetings hold at the church premises, last stop Adjen-Kotoku.</p>
+<section class="h-sec h-tint">
+  <div class="narrow">
+    <header class="head-c">
+      <p class="kicker">Every week</p>
+      <h2>Our regular meetings</h2>
+      <p class="head-sub">All meetings hold at the church premises, last stop Adjen-Kotoku, Accra.</p>
+    </header>
+    <div class="card table-card">
+      <table class="times-table">
+        <thead><tr><th scope="col">Day</th><th scope="col">Meeting</th><th scope="col">Time</th></tr></thead>
+        <tbody>
+        <tr data-day="0"><th scope="row">Sunday</th><td>Divine Service</td><td class="t-time">8:30 – 11:00 AM</td></tr>
+        <tr data-day="2"><th scope="row">Tuesday</th><td>Study His Word</td><td class="t-time">6:00 – 8:30 PM</td></tr>
+        <tr data-day="3"><th scope="row">Wednesday</th><td>Grace Hour</td><td class="t-time">9:00 AM – 12:00 noon</td></tr>
+        <tr data-day="5"><th scope="row">Friday</th><td>Liberation and Prophetic Hour</td><td class="t-time">6:30 – 9:00 PM</td></tr>
+        </tbody>
+      </table>
     </div>
-    <ul class="times ">
-    <li data-day="0"><span class="t-day">Sunday</span><span class="t-name">Divine Service</span><span class="t-time">8:30 – 11:00 AM</span></li>
-    <li data-day="2"><span class="t-day">Tuesday</span><span class="t-name">Study His Word</span><span class="t-time">6:00 – 8:30 PM</span></li>
-    <li data-day="3"><span class="t-day">Wednesday</span><span class="t-name">Grace Hour</span><span class="t-time">9:00 AM – 12:00 noon</span></li>
-    <li data-day="5"><span class="t-day">Friday</span><span class="t-name">Liberation and Prophetic Hour</span><span class="t-time">6:30 – 9:00 PM</span></li>
-  </ul>
+  </div>
+</section>
+
+<section class="h-sec">
+  <div class="narrow">
+    <header class="head-c">
+      <p class="kicker">Past services</p>
+      <h2>Moments from the house</h2>
+    </header>
+    <div class="photo-row">
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/white-service-2.jpg" alt="A night of prayer at FDMI" loading="lazy"></a>
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/consecration.jpg" alt="Laying on of hands" loading="lazy" style="object-position:50% 25%"></a>
+      <a class="card photo-tile" href="gallery.html"><img src="assets/photos/family-celebration.jpg" alt="Family celebration" loading="lazy" style="object-position:50% 30%"></a>
+    </div>
+    <div class="h-actions"><a class="btn btn-outline" href="gallery.html">Open the gallery</a></div>
+  </div>
+</section>
+
+<section class="h-sec">
+  <div class="narrow">
+    <div class="cta-box">
+      <h2>Bring someone with you</h2>
+      <p>Share this event with family and friends, or ask us about upcoming programmes.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="https://wa.me/233596609093?text=Hello%2C%20I%20would%20like%20to%20know%20about%20upcoming%20programmes%20at%20FDMI.">Ask on WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 <div class="lightbox" id="lightbox" hidden>
