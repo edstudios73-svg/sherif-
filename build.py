@@ -14,7 +14,10 @@ WA_NUM = "233596609093"
 WA = f"https://wa.me/{WA_NUM}"
 PHONES = [("059 660 9093", "+233596609093"), ("020 171 3589", "+233201713589")]
 ADDRESS = "Last stop, Adjen-Kotoku, next to Pick N Nikki School, Accra"
-DIRECTIONS = "https://www.google.com/maps/search/?api=1&amp;query=Pick+N+Nikki+School+Adjen+Kotoku+Accra"
+LAT, LNG = "5.74170883", "-0.35696792"  # from GhanaPostGPS GW-0706-5202
+GPS = "GW-0706-5202"
+GPS_URL = "https://ghanapostgps.com/map/?gps=GW07065202"
+DIRECTIONS = f"https://www.google.com/maps/dir/?api=1&amp;destination={LAT},{LNG}"
 SOCIAL = [
     ("YouTube", "https://www.youtube.com/results?search_query=faith+demonstration+ministries+victor+annan"),
     ("Facebook", "https://www.facebook.com/search/top?q=FAITH%20Demonstration%20Ministries%20International"),
@@ -81,6 +84,7 @@ def footer():
       <img src="assets/fdmi-crest.jpg" alt="" width="56" height="56">
       <p class="footer-name">Faith Demonstration Ministries International</p>
       <p>{ADDRESS}</p>
+      <p>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a></p>
       <p>{phones_html("<br>")}</p>
     </div>
     <div>
@@ -305,8 +309,8 @@ LIGHTBOX = '''<div class="lightbox" id="lightbox" hidden>
   <button class="lb-next" type="button" aria-label="Next photo">&#8594;</button>
 </div>'''
 
-MAP = '''<div class="map">
-    <iframe title="Map of Adjen-Kotoku, Accra" src="https://maps.google.com/maps?q=Adjen%20Kotoku%2C%20Accra%2C%20Ghana&amp;z=14&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+MAP = f'''<div class="map">
+    <iframe title="Map showing Faith Demonstration Ministries International, Adzen, Ga West" src="https://maps.google.com/maps?q={LAT},{LNG}&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>'''
 
 # ---------------------------------------------------------------- pages
@@ -395,7 +399,7 @@ pages["index.html"] = page("index.html", "Home",
     </div>
     <div class="split-text">
       <h2>Find us</h2>
-      <p>{ADDRESS}.<br>Call {phones_html()}.</p>
+      <p>{ADDRESS}.<br>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a>.<br>Call {phones_html()}.</p>
       <a class="text-link" href="visit.html">Directions and what to expect</a>
     </div>
   </div>
@@ -617,6 +621,7 @@ pages["visit.html"] = page("visit.html", "Plan a visit",
     <div>
       <h2 class="h-sm">Address</h2>
       <p class="address">{ADDRESS}, Ghana</p>
+      <p>Adzen, Ga West, Greater Accra<br>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a></p>
       <p>Call {phones_html()}<br>WhatsApp <a href="{WA}">059 660 9093</a></p>
       <div class="actions">
         <a class="btn btn-dark" href="{DIRECTIONS}">Get directions</a>

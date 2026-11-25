@@ -16,6 +16,7 @@ Don't edit the `.html` files by hand: the next build overwrites them.
 - `script.js`: menu, today's-meeting highlight, days-until-event, calendar file, lightbox
 - `assets/photos/`: gallery and section photos
 - `assets/video/`: videos
+- Location: GhanaPostGPS GW-0706-5202 (5.74170883, -0.35696792), set in `build.py`
 - `assets/og-card.jpg`: the link preview image (1200x630) for WhatsApp, Facebook and X
 
 ## To update
