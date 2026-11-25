@@ -9,5 +9,5 @@ A one-page static website for FDMI (Adjen-Kotoku, Accra). No build step: open `i
 
 ## To update
 - **Next event:** change the dates at the top of `script.js` and the event text in `index.html`.
+- **Service times:** edit the table in the `#times` section of `index.html` and the footer list.
 - **Facebook / YouTube links** currently open a search. Replace them with the church's exact page URLs.
-- **Service times:** add them to the "Find us" section once confirmed.
