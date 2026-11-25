@@ -37,7 +37,7 @@ h3 { font-size: 1.4rem; line-height: 1.2; }
 .skip:focus { top: 1rem; }
 
 /* ---------- Buttons and links ---------- */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 50px; padding: .85rem 1.6rem; border-radius: 999px; border: 1px solid transparent; font: 600 .95rem/1.2 var(--sans); text-decoration: none; transition: background-color .15s, color .15s, border-color .15s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 50px; padding: .85rem 1.6rem; border-radius: 3px; border: 1px solid transparent; font: 600 .95rem/1.2 var(--sans); text-decoration: none; transition: background-color .15s, color .15s, border-color .15s; }
 .btn-dark { background: linear-gradient(135deg, var(--wine) 0%, var(--ink) 100%); color: #fff; box-shadow: 0 10px 22px -14px rgba(29, 25, 21, .9); }
 .btn-dark:hover { background: var(--ink); }
 .btn-gold { background: linear-gradient(180deg, #e2bb6e 0%, var(--gold) 100%); color: var(--ink); box-shadow: 0 12px 26px -14px rgba(210, 164, 82, .9); }
@@ -357,8 +357,10 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 .head-sub { color: var(--ink-soft); margin-top: .7rem; }
 .h-actions { text-align: center; margin-top: 2rem; }
 
-.card { display: block; background: #fff; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 18px 40px -26px rgba(29, 25, 21, .45); text-decoration: none; color: inherit; }
+.card { display: block; background: #fff; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; box-shadow: 0 18px 40px -26px rgba(29, 25, 21, .45); text-decoration: none; color: inherit; }
 .card-body { padding: clamp(1.5rem, 4vw, 2.25rem); }
+.leader-card, .event-card, .find-card, .quote-card, .list-card, .table-card { border-top: 3px solid var(--gold); }
+.sermon-card { border-top: 3px solid var(--gold); }
 .card-body h2 { font-weight: 600; font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: .8rem; }
 .card-body > p { color: var(--ink-soft); }
 .card-body > .btn { margin-top: 1.5rem; }
@@ -368,7 +370,7 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 
 /* What we're about */
 .img-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.img-card { border-radius: 16px; transition: transform .2s ease, box-shadow .2s ease; }
+.img-card { border-radius: 2px; transition: transform .2s ease, box-shadow .2s ease; }
 .img-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .img-card span { display: block; padding: 1rem .75rem 1.1rem; text-align: center; font: 600 1.15rem var(--serif); }
 .img-card:hover { transform: translateY(-3px); box-shadow: 0 24px 44px -26px rgba(29, 25, 21, .55); }
@@ -380,21 +382,21 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 .sermon-card-img img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; object-position: 50% 40%; }
 
 /* Service times table */
-.table-card { border-radius: 16px; }
+.table-card { border-radius: 2px; }
 .times-table { width: 100%; border-collapse: collapse; }
 .times-table th, .times-table td { text-align: left; padding: 1rem 1.25rem; border-top: 1px solid var(--line); vertical-align: top; }
 .times-table thead th { border-top: 0; background: #f8f3f0; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-ink); }
 .times-table tbody th { font-weight: 600; }
 .times-table .t-time { font-weight: 600; color: var(--wine); white-space: nowrap; }
 .times-table tr.is-today { background: #fbf3e2; }
-.times-table tr.is-today th::after { content: "Today"; display: inline-block; margin-left: .5rem; padding: .1rem .5rem; border-radius: 999px; background: var(--gold); color: var(--ink); font-size: .68rem; font-weight: 600; vertical-align: 1px; }
+.times-table tr.is-today th::after { content: "Today"; display: inline-block; margin-left: .5rem; padding: .1rem .5rem; border-radius: 2px; background: var(--gold); color: var(--ink); font-size: .68rem; font-weight: 600; vertical-align: 1px; }
 .table-note { text-align: center; color: var(--ink-soft); font-size: .92rem; margin: 1rem 0 1.5rem; }
 
 /* Explore */
 .explore { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.explore-item { display: flex; flex-direction: column; align-items: center; gap: .8rem; padding: 1.5rem 1rem; border-radius: 16px; font: 600 1.05rem var(--serif); text-align: center; transition: transform .2s ease; }
+.explore-item { display: flex; flex-direction: column; align-items: center; gap: .8rem; padding: 1.5rem 1rem; border-radius: 2px; font: 600 1.05rem var(--serif); text-align: center; transition: transform .2s ease; }
 .explore-item:hover { transform: translateY(-3px); }
-.explore-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; color: #fff; background: linear-gradient(135deg, var(--wine), var(--ink)); box-shadow: 0 10px 20px -12px rgba(90, 22, 34, .9); }
+.explore-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 2px; color: #fff; background: linear-gradient(135deg, var(--wine), var(--ink)); box-shadow: 0 10px 20px -12px rgba(90, 22, 34, .9); }
 .explore-gold { color: var(--ink); background: linear-gradient(135deg, #e6c27a, var(--gold)); box-shadow: 0 10px 20px -12px rgba(210, 164, 82, .9); }
 .explore-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -407,7 +409,7 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 .event-when [data-countdown] { font-weight: 400; color: var(--ink-soft); margin-left: .35rem; }
 
 /* Announcements list */
-.list-card { border-radius: 16px; margin-bottom: 1.5rem; }
+.list-card { border-radius: 2px; margin-bottom: 1.5rem; }
 .list-row { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 1.25rem 1.5rem; border-top: 1px solid var(--line); text-decoration: none; }
 .list-row:first-child { border-top: 0; }
 .list-row:hover { background: #fbf7f4; }
@@ -441,9 +443,9 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 
 @media (max-width: 760px) {
   .img-cards { grid-template-columns: 1fr 1fr; gap: .8rem; }
-  .explore { grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+  .explore { grid-template-columns: 1fr 1fr; gap: .7rem; }
   .explore-item { padding: 1.1rem .4rem; font-size: .92rem; }
-  .explore-icon { width: 48px; height: 48px; border-radius: 14px; }
+  .explore-icon { width: 48px; height: 48px; border-radius: 2px; }
   .event-card { grid-template-columns: 1fr; }
   .event-card-img img { height: auto; }
   .leader-card-img img { aspect-ratio: 4 / 3.4; }
@@ -458,7 +460,7 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
   .hero-copy, .hero-sub { margin-left: 0; margin-right: 0; }
   .hero-crest { width: 60px; height: 60px; }
   .hero-img { object-position: 82% 40%; }
-  .explore-item { font-size: .84rem; overflow-wrap: anywhere; }
+  .explore-item { font-size: .95rem; }
 }
 
 /* ---------- Responsive ---------- */
@@ -469,7 +471,7 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
 
 @media (max-width: 960px) {
   :root { --header-h: 66px; }
-  .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; min-height: 42px; padding: 0 1.15rem; background: none; border: 1.5px solid var(--ink); border-radius: 999px; font: 600 .95rem var(--sans); color: var(--ink); cursor: pointer; }
+  .menu-toggle { display: inline-flex; align-items: center; margin-left: auto; min-height: 42px; padding: 0 1.15rem; background: none; border: 1.5px solid var(--ink); border-radius: 3px; font: 600 .95rem var(--sans); color: var(--ink); cursor: pointer; }
   .site-nav { position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 1rem var(--gutter) 2rem; background: var(--paper); overflow-y: auto; visibility: hidden; opacity: 0; transition: opacity .15s, visibility .15s; }
   .nav-open .site-nav { visibility: visible; opacity: 1; }
   .nav-open { overflow: hidden; }
