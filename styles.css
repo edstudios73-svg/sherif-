@@ -702,3 +702,103 @@ a.split-photo:hover img, .band-photo:hover img, .mosaic a:hover img { opacity: .
   .fill-photo:hover img { transform: none; }
 }
 .count-tiles[hidden] { display: none; }
+
+/* ======================================================================
+   Size pass: calmer, smaller scale across the site
+   ====================================================================== */
+body { font-size: 1rem; line-height: 1.6; }
+h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+
+/* Hero slideshow */
+.hero { min-height: min(78svh, 640px); }
+.hero-slides { position: absolute; inset: 0; z-index: -2; }
+.hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
+.hero-slide.is-active { opacity: 1; }
+.hero-content { padding-block: 3.5rem 4.5rem; }
+.hero-crest { width: 58px; height: 58px; margin-bottom: 1.1rem; }
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.05; }
+.hero .kicker { margin-bottom: .8rem; }
+.hero-sub { font-size: clamp(1rem, 1.6vw, 1.15rem); margin: 1rem auto 1.1rem; }
+.hero-copy { font-size: .95rem; max-width: 30rem; margin: 0 auto 1.6rem; }
+.hero-dots { position: absolute; left: 0; right: 0; bottom: 1.25rem; display: flex; justify-content: center; gap: .5rem; z-index: 1; }
+.hero-dots button { width: 28px; height: 3px; padding: 0; border: 0; background: rgba(255, 255, 255, .4); cursor: pointer; }
+.hero-dots button[aria-current="true"] { background: var(--gold); }
+.hero-dots button::before { content: ""; display: block; height: 20px; margin-top: -9px; }
+
+/* Buttons */
+.btn { min-height: 44px; padding: .7rem 1.3rem; font-size: .9rem; }
+.btn-lg { min-height: 48px; padding: .8rem 1.5rem; font-size: .95rem; }
+.btn-sm { min-height: 36px; padding: .45rem .9rem; font-size: .84rem; }
+.nav-visit { min-height: 38px; padding: .45rem 1rem; font-size: .88rem; }
+
+/* Headings and sections */
+.h-sec { padding-block: clamp(2.75rem, 5.5vw, 4.25rem); }
+.head-c { margin-bottom: 1.75rem; }
+.head-c h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); }
+.head-sub { font-size: .95rem; }
+.kicker { font-size: .68rem; margin-bottom: .7rem; }
+.narrow { width: min(860px, 100% - 2 * var(--gutter)); }
+
+/* Cards */
+.card-body { padding: clamp(1.25rem, 3vw, 1.75rem); }
+.card-body h2 { font-size: clamp(1.4rem, 2.6vw, 1.8rem); margin-bottom: .6rem; }
+.card-body > p { font-size: .95rem; }
+.card-body > .btn { margin-top: 1.2rem; }
+.img-card span { font-size: 1rem; padding: .75rem .5rem .85rem; }
+.explore-item { padding: 1.1rem .8rem; font-size: .95rem; }
+.explore-icon { width: 46px; height: 46px; }
+.explore-icon svg { width: 22px; height: 22px; }
+.times-table th, .times-table td { padding: .8rem 1rem; font-size: .93rem; }
+.list-row { padding: 1rem 1.25rem; }
+.list-text strong { font-size: 1.05rem; }
+.quote-card blockquote { font-size: clamp(1.05rem, 2vw, 1.25rem); }
+.find-card h3, .text-card h3 { font-size: 1.25rem; }
+.find-card .map iframe { height: 280px; }
+.leader-card-img img { aspect-ratio: 16 / 9; }
+.sermon-card-img img { aspect-ratio: 16 / 7; }
+.gallery-card img { aspect-ratio: 16 / 7; }
+
+/* Inner pages */
+.page-hero { min-height: clamp(240px, 34vh, 340px); }
+.page-hero-body { padding-block: 2.75rem; }
+.page-hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+.page-hero-body > p:last-child { font-size: 1rem; margin-top: .7rem; }
+.profile-card { grid-template-columns: 280px 1fr; }
+.profile-flip { grid-template-columns: 1fr 280px; }
+.profile-img img { min-height: 280px; }
+.split-card-img { min-height: 320px; }
+.member-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 220px)); }
+.member-card strong { font-size: 1.1rem; }
+.ministry-card h2, .ann-card h2 { font-size: 1.35rem; }
+.count-tiles b { font-size: 1.6rem; }
+.count-tiles div { padding: .7rem .3rem .6rem; }
+.vision-statement { font-size: clamp(1.35rem, 2.8vw, 1.9rem); }
+.cta-box { padding: clamp(1.75rem, 4vw, 2.5rem); }
+.cta-box h2 { font-size: clamp(1.4rem, 2.8vw, 1.8rem); }
+.cta-box p { font-size: .95rem; margin: .6rem auto 1.4rem; }
+.platform-card { padding: 1.25rem .8rem; }
+.platform-card strong { font-size: 1.05rem; }
+.event-page-card { grid-template-columns: 4fr 6fr; }
+
+/* Footer */
+.site-footer { font-size: .9rem; padding-top: 3rem; }
+.footer-name { font-size: 1.15rem; }
+
+@media (max-width: 860px) {
+  .profile-card, .profile-flip { grid-template-columns: 1fr; }
+  .profile-img img { min-height: 0; aspect-ratio: 4 / 3; }
+  .split-card-img { min-height: 0; }
+  .event-page-card { grid-template-columns: 1fr; }
+  .event-poster img { max-width: 340px; }
+}
+@media (max-width: 640px) {
+  .hero { min-height: 72svh; }
+  .hero-content { padding-block: 2.5rem 4rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-crest { width: 50px; height: 50px; }
+  .page-hero { min-height: 220px; }
+  .page-hero h1 { font-size: 1.8rem; }
+  .leader-card-img img, .sermon-card-img img, .gallery-card img { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-slide { transition: none; } }

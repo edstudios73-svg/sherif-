@@ -110,4 +110,25 @@ if (lb) {
   });
 }
 
+// ---------- Hero slideshow ----------
+const slides = $$(".hero-slide");
+const dots = $$(".hero-dots button");
+if (slides.length > 1) {
+  let cur = 0;
+  let timer = null;
+  const show = (n) => {
+    slides[cur].classList.toggle("is-active", false);
+    dots[cur].setAttribute("aria-current", "false");
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.toggle("is-active", true);
+    dots[cur].setAttribute("aria-current", "true");
+  };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const start = () => { if (!reduce && !timer) timer = setInterval(() => show(cur + 1), 5000); };
+  const stop = () => { clearInterval(timer); timer = null; };
+  dots.forEach((d, i) => d.addEventListener("click", () => { stop(); show(i); start(); }));
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+  start();
+}
+
 $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
