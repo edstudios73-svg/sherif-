@@ -309,6 +309,52 @@ TEAM = "\n".join(
             {f'<p>{role}</p>' if name else ''}
           </article>''' for img, role, name in TEAM_MEMBERS)
 
+def vision_band(link=False):
+    more = '\n        <a class="pill pill-gold" href="about.html#mission">Our mission and goals</a>' if link else ""
+    return f'''    <section class="vision" id="vision">
+      <div class="wrap vision-inner">
+        <p class="eyebrow">Our vision</p>
+        <p class="vision-line">To raise an indigenous and self&#8209;supporting church.</p>
+        <p class="vision-line">To demonstrate the love of God in our generation.</p>{more}
+      </div>
+    </section>'''
+
+
+MISSION = '''    <section class="section tint" id="mission">
+      <div class="wrap">
+        <header class="head">
+          <p class="eyebrow">What drives us</p>
+          <h2>Mission, focus and goals</h2>
+        </header>
+        <div class="mfg">
+          <article class="mfg-card">
+            <h3>Our mission</h3>
+            <ol>
+              <li>To preach the undiluted Word of God.</li>
+              <li>Spiritual growth, numerical growth and financial growth.</li>
+              <li>Equipping the saints of Christ <span class="ref">(Ephesians 4:11–13)</span>.</li>
+            </ol>
+          </article>
+          <article class="mfg-card mfg-focus">
+            <h3>Our focus</h3>
+            <p>We focus on the sub-communities around us, the youth and the children, training them with vocational skills.</p>
+          </article>
+          <article class="mfg-card">
+            <h3>Our goals</h3>
+            <ol>
+              <li>To reach the unreached.</li>
+              <li>To help the less privileged.</li>
+              <li>To help the aged.</li>
+            </ol>
+          </article>
+        </div>
+        <figure class="mfg-verse">
+          <blockquote>Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip his people for works of service, so that the body of Christ may be built up until we all reach unity in the faith.</blockquote>
+          <figcaption>Ephesians 4:11–13</figcaption>
+        </figure>
+      </div>
+    </section>'''
+
 # ---------------------------------------------------------------- pages
 pages = {}
 
@@ -373,6 +419,8 @@ pages["index.html"] = page("index.html",
       </div>
     </section>
 
+{vision_band(link=True)}
+
     <section class="section">
       <div class="wrap">
 {EVENT_CARD}
@@ -419,7 +467,7 @@ pages["index.html"] = page("index.html",
     og_title="Faith Demonstration Ministries International | Adjen-Kotoku, Accra")
 
 pages["about.html"] = page("about.html", "About us",
-    "Faith Demonstration Ministries International is a prophetic and apostolic church in Adjen-Kotoku, Accra, led by Apostle Victor Annan.",
+    "Our vision: to raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation. Learn about FDMI's mission, focus and goals.",
     f'''{page_hero("assets/photos/church-family.jpg", "About us", "A family of faith in Adjen-Kotoku", "Faith Demonstration Ministries International is a prophetic and apostolic church in Accra, Ghana, led by Apostle Victor Annan.", "50% 30%")}
 
     <section class="section">
@@ -435,7 +483,11 @@ pages["about.html"] = page("about.html", "About us",
       </div>
     </section>
 
-    <section class="section tint">
+{vision_band()}
+
+{MISSION}
+
+    <section class="section">
       <div class="wrap">
         <header class="head">
           <p class="eyebrow">What we're about</p>
@@ -450,19 +502,20 @@ pages["about.html"] = page("about.html", "About us",
       </div>
     </section>
 
-    <section class="section">
+    <section class="section tint">
       <div class="wrap split split-rev">
         <div class="split-text">
           <p class="eyebrow eyebrow-left">Children and youth</p>
           <h2>Room for the next generation</h2>
           <p>Our children and young people are at the heart of church life, in worship, in celebration and in service.</p>
+          <p>Alongside the Word, we want to train them, and the communities around us, with vocational skills for life.</p>
           <a class="pill pill-wine" href="gallery.html">See more in the gallery</a>
         </div>
         {VIDEO}
       </div>
     </section>
 
-    <section class="section tint">
+    <section class="section">
       <div class="wrap wrap-narrow">
 {VERSE}
 {PRAYER_BTN}

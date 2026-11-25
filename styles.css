@@ -342,3 +342,27 @@ a.photo-card:hover { transform: translateY(-4px); box-shadow: 0 26px 46px -24px 
 .foot-phones { margin-top: -.6rem; }
 .foot-phones a { color: #fff; font-weight: 600; text-decoration: none; }
 @media (max-width: 600px) { .team { grid-template-columns: 1fr 1fr; gap: .7rem; } .member h3 { font-size: 1rem; } }
+
+/* Vision band */
+.vision { background: radial-gradient(ellipse 70% 120% at 50% 0%, #7a1d2b 0%, var(--wine-dark) 55%, var(--night) 100%); color: #fff; padding-block: clamp(3.5rem, 8vw, 5.5rem); text-align: center; position: relative; overflow: hidden; }
+.vision::before { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.vision-inner { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+.vision-line { font: italic 500 clamp(1.5rem, 3.6vw, 2.4rem)/1.25 var(--serif); max-width: 24ch; }
+.vision-line + .vision-line { color: var(--gold-light); }
+.vision .pill { margin-top: 1.4rem; }
+
+/* Mission, focus, goals */
+.mfg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; counter-reset: none; }
+.mfg-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem 1.6rem; box-shadow: var(--shadow); }
+.mfg-card h3 { font: 700 1.4rem/1.2 var(--serif); color: var(--wine); margin-bottom: 1rem; padding-bottom: .8rem; border-bottom: 2px solid var(--gold); display: inline-block; }
+.mfg-card ol { list-style: none; counter-reset: item; padding: 0; margin: 0; display: grid; gap: .9rem; }
+.mfg-card li { counter-increment: item; position: relative; padding-left: 2.4rem; }
+.mfg-card li::before { content: counter(item); position: absolute; left: 0; top: -.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: var(--night); font-weight: 700; font-size: .85rem; }
+.mfg-card .ref { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+.mfg-focus { background: linear-gradient(160deg, var(--wine), var(--night)); color: #fff; border: 0; }
+.mfg-focus h3 { color: var(--gold-light); }
+.mfg-focus p { font: italic 500 1.2rem/1.5 var(--serif); }
+.mfg-verse { margin: 2rem auto 0; max-width: 46rem; text-align: center; }
+.mfg-verse blockquote { margin: 0 0 .5rem; font: italic 500 1.1rem/1.6 var(--serif); color: var(--ink); }
+.mfg-verse figcaption { color: var(--wine); font-weight: 700; font-size: .9rem; }
+@media (max-width: 860px) { .mfg { grid-template-columns: 1fr; } }
