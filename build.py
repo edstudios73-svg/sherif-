@@ -9,7 +9,6 @@ from pathlib import Path
 from urllib.parse import quote
 
 SITE = "https://fdmi-church.vercel.app"
-OG = f"{SITE}/assets/og-card.jpg"
 WA_NUM = "233596609093"
 WA = f"https://wa.me/{WA_NUM}"
 PHONES = [("059 660 9093", "+233596609093"), ("020 171 3589", "+233201713589")]
@@ -123,52 +122,6 @@ def footer():
 </footer>'''
 
 
-def page(file, title, desc, body):
-    full = ("Faith Demonstration Ministries International | Adjen-Kotoku, Accra" if file == "index.html"
-            else f"{title} | Faith Demonstration Ministries International")
-    url = SITE + "/" + ("" if file == "index.html" else file)
-    return f'''<!DOCTYPE html>
-<html lang="en-GH">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{full}</title>
-<meta name="description" content="{desc}">
-<meta name="theme-color" content="#1d1915">
-<link rel="canonical" href="{url}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Faith Demonstration Ministries International">
-<meta property="og:locale" content="en_GH">
-<meta property="og:url" content="{url}">
-<meta property="og:title" content="{full}">
-<meta property="og:description" content="{desc}">
-<meta property="og:image" content="{OG}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Faith Demonstration Ministries International, Adjen-Kotoku, Accra">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{full}">
-<meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{OG}">
-<link rel="icon" href="assets/fdmi-crest.jpg">
-<link rel="apple-touch-icon" href="assets/fdmi-crest.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body class="page-{file.replace('.html', '')}">
-{header(file)}
-<main id="main">
-{body}
-</main>
-{footer()}
-<script src="script.js"></script>
-</body>
-</html>
-'''
-
-
 def page_head(title, intro):
     return f'''<section class="page-head">
   <div class="container page-head-grid">
@@ -267,22 +220,171 @@ TEAM = [  # (photo, position, name) - add names when confirmed
 ]
 
 
-def event_feature(full=False):
+NAME = "Faith Demonstration Ministries International"
+SHORT = "FDMI"
+LOCALITY = "Adzen (Adjen-Kotoku), Ga West, Accra"
+
+TITLES = {  # page title tags, kept under ~60 characters for search results
+    "index.html": "Faith Demonstration Ministries International, Accra",
+    "about.html": "About FDMI | Vision, Mission and Goals",
+    "leaders.html": "Leaders | Apostle Victor Annan | FDMI Accra",
+    "ministries.html": "Ministries | Worship, Prayer, Youth, Children | FDMI",
+    "sermons.html": "Sermons | Divine Service and Study His Word | FDMI",
+    "events.html": "At His Feet All-Night Worship, 4 Dec 2026 | FDMI",
+    "announcements.html": "Announcements | FDMI Church, Adjen-Kotoku, Accra",
+    "visit.html": "Service Times and Directions | FDMI Church, Accra",
+    "gallery.html": "Photos and Video | FDMI Church, Accra",
+}
+
+CRUMB = {"about.html": "About", "leaders.html": "Leaders", "ministries.html": "Ministries", "sermons.html": "Sermons",
+         "events.html": "Events", "announcements.html": "Announcements", "visit.html": "Plan a visit", "gallery.html": "Gallery"}
+
+
+def church_ld():
+    import json
+    days = {0: "Sunday", 2: "Tuesday", 3: "Wednesday", 5: "Friday"}
+    return {
+        "@type": ["Church", "PlaceOfWorship"],
+        "@id": f"{SITE}/#church",
+        "name": NAME,
+        "alternateName": SHORT,
+        "description": "A prophetic and apostolic church in Adzen (Adjen-Kotoku), Ga West, Accra, Ghana, led by Apostle Victor Annan.",
+        "url": f"{SITE}/",
+        "logo": f"{SITE}/assets/fdmi-crest.jpg",
+        "image": [f"{SITE}/assets/photos/worship-team.jpg", f"{SITE}/assets/photos/church-family.jpg"],
+        "telephone": PHONES[0][1],
+        "contactPoint": [{"@type": "ContactPoint", "telephone": t, "contactType": "customer service", "areaServed": "GH",
+                          "availableLanguage": ["en"]} for _, t in PHONES],
+        "address": {"@type": "PostalAddress",
+                    "streetAddress": "Last stop, Adjen-Kotoku, next to Pick N Nikki School",
+                    "addressLocality": "Adzen, Ga West", "addressRegion": "Greater Accra",
+                    "postalCode": "GW-0706-5202", "addressCountry": "GH"},
+        "geo": {"@type": "GeoCoordinates", "latitude": float(LAT), "longitude": float(LNG)},
+        "hasMap": f"https://www.google.com/maps?q={LAT},{LNG}",
+        "openingHoursSpecification": [
+            {"@type": "OpeningHoursSpecification", "dayOfWeek": f"https://schema.org/{days[d]}",
+             "opens": o, "closes": c, "description": m}
+            for d, m, o, c in [(0, "Divine Service", "08:30", "11:00"), (2, "Study His Word", "18:00", "20:30"),
+                               (3, "Grace Hour", "09:00", "12:00"), (5, "Liberation and Prophetic Hour", "18:30", "21:00")]],
+        "member": [{"@type": "Person", "name": "Apostle Victor Annan", "jobTitle": "Head of the ministry"},
+                   {"@type": "Person", "name": "Rev. Mrs Natalie Annan", "jobTitle": "Minister"}],
+        "sameAs": ["https://www.instagram.com/apostlevictorannan", "https://www.tiktok.com/@apostlevictorannan", GPS_URL],
+        "slogan": "To raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation.",
+    }
+
+
+def event_ld():
     e = EVENT
+    return {
+        "@type": "Event", "@id": f"{SITE}/events.html#at-his-feet",
+        "name": "At His Feet: Worship All Night",
+        "description": f"An all-night worship service at {NAME} with {e['with']}.",
+        "startDate": "2026-12-04T20:00:00+00:00", "endDate": "2026-12-05T05:00:00+00:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "image": [f"{SITE}/assets/at-his-feet-flyer.jpg"],
+        "location": {"@id": f"{SITE}/#church"},
+        "organizer": {"@id": f"{SITE}/#church"},
+        "performer": [{"@type": "Person", "name": n.strip()} for n in e["with"].replace(" and ", ", ").split(",")],
+    }
+
+
+def page(file, title, desc, body, og=None, preload=None, extra_ld=None):
+    import json
+    full = TITLES.get(file, f"{title} | {NAME}")
+    url = SITE + "/" + ("" if file == "index.html" else file)
+    og_img = f"{SITE}/assets/og/{file.replace('.html', '')}.jpg"
+    graph = [church_ld(), {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/", "name": NAME,
+                           "alternateName": SHORT, "inLanguage": "en-GH", "publisher": {"@id": f"{SITE}/#church"}},
+             {"@type": "WebPage", "@id": f"{url}#webpage", "url": url, "name": full, "description": desc,
+              "isPartOf": {"@id": f"{SITE}/#website"}, "about": {"@id": f"{SITE}/#church"},
+              "primaryImageOfPage": og_img, "inLanguage": "en-GH"}]
+    if file != "index.html":
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
+            {"@type": "ListItem", "position": 2, "name": CRUMB[file], "item": url}]})
+    graph += extra_ld or []
+    ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    pre = f'\n<link rel="preload" as="image" href="{preload}" fetchpriority="high">' if preload else ""
+    return f'''<!DOCTYPE html>
+<html lang="en-GH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{full}</title>
+<meta name="description" content="{desc}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="{NAME}">
+<meta name="theme-color" content="#1d1915">
+<link rel="canonical" href="{url}">
+<meta name="geo.region" content="GH-AA">
+<meta name="geo.placename" content="{LOCALITY}">
+<meta name="geo.position" content="{LAT};{LNG}">
+<meta name="ICBM" content="{LAT}, {LNG}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{NAME}">
+<meta property="og:locale" content="en_GH">
+<meta property="og:url" content="{url}">
+<meta property="og:title" content="{full}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{og_img}">
+<meta property="og:image:secure_url" content="{og_img}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{title}, {NAME}, Adjen-Kotoku, Accra">
+<meta property="place:location:latitude" content="{LAT}">
+<meta property="place:location:longitude" content="{LNG}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{full}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{og_img}">
+<meta name="twitter:image:alt" content="{title}, {NAME}">
+<link rel="icon" href="assets/fdmi-crest.jpg">
+<link rel="apple-touch-icon" href="assets/fdmi-crest.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{pre}
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{ld}
+</script>
+</head>
+<body class="page-{file.replace('.html', '')}">
+{header(file)}
+<main id="main">
+{body}
+</main>
+{footer()}
+<script src="script.js"></script>
+</body>
+</html>
+'''
+
+
+def event_feature(mode="full"):
+    e = EVENT
+    full = mode == "full"
     extra = f'''
-        <p class="event-with"><span>Ministering</span> {e["with"]}</p>''' if full else ""
-    actions = f'''
+        <p class="event-with"><span>Ministering</span> {e["with"]}</p>'''
+    if full:
+        actions = f'''
         <div class="actions">
           <a class="btn btn-dark" data-ics href="#" download="at-his-feet.ics">Add to calendar</a>
           <a class="btn btn-line" href="tel:{PHONES[0][1]}">Call {PHONES[0][0]}</a>
-        </div>''' if full else '''
-        <a class="text-link" href="events.html">Event details</a>'''
-    return f'''<article class="event{' event-full' if full else ''}" data-start="{e["start"]}" data-end="{e["end"]}">
+        </div>'''
+    else:
+        actions = '''
+        <div class="actions">
+          <a class="btn btn-dark" href="events.html">Event details</a>
+          <a class="btn btn-line" data-ics href="#" download="at-his-feet.ics">Add to calendar</a>
+        </div>'''
+    return f'''<article class="event event-full" id="at-his-feet" data-start="{e["start"]}" data-end="{e["end"]}">
       <a class="event-flyer" href="assets/at-his-feet-flyer.jpg" data-lightbox>
         <img src="assets/at-his-feet-flyer.jpg" alt="At His Feet flyer: worship all night, Friday 4th December 2026, 8:00 PM" width="720" height="1007" loading="lazy">
       </a>
       <div class="event-body">
-        <p class="event-date"><time datetime="2026-12-04">{e["date"]}</time><span data-countdown></span></p>
+        <p class="event-date"><time datetime="2026-12-04T20:00">{e["date"]}</time><span data-countdown></span></p>
         <h3 class="event-title">{e["title"]}</h3>
         <p class="event-kind">{e["kind"]}</p>
         <dl class="event-meta">
@@ -295,7 +397,7 @@ def event_feature(full=False):
 
 def announcement(a, compact=False):
     date, title, body, link = a
-    more = f'<a class="text-link" href="{link[0]}">{link[1]}</a>' if link else ""
+    more = f'<a class="btn btn-line btn-sm" href="{link[0]}">{link[1]}</a>' if link else ""
     if compact:
         return f'''          <li class="notice">
             <p class="notice-date">{date}</p>
@@ -336,40 +438,56 @@ MAP = f'''<div class="map">
 # ---------------------------------------------------------------- pages
 pages = {}
 
+def sec_head(href, title, btn):
+    return f'''<div class="sec-head">
+      <h2><a href="{href}">{title}</a></h2>
+      <a class="btn btn-line btn-sm" href="{href}">{btn}</a>
+    </div>'''
+
+
+home_times = "\n".join(f'''      <li data-day="{n}">
+        <span class="t-day">{d}</span>
+        <span class="t-name">{m}</span>
+        <span class="t-time">{t}</span>
+      </li>''' for n, d, m, t in SERVICES)
+
 pages["index.html"] = page("index.html", "Home",
-    "A prophetic and apostolic church at Adjen-Kotoku, Accra, led by Apostle Victor Annan. Sunday Divine Service from 8:30 AM. Everyone is welcome.",
-    f'''<section class="hero">
-  <img class="hero-img" src="assets/photos/white-service-2.jpg" alt="The congregation in prayer under the gold F D M I letters" width="1280" height="960">
+    "A prophetic and apostolic church in Adjen-Kotoku (Adzen), Accra, led by Apostle Victor Annan. Sunday Divine Service at 8:30 AM. Everyone is welcome.",
+    f'''<section class="hero" aria-label="Welcome">
+  <img class="hero-img" src="assets/photos/worship-team.jpg" alt="The worship team leading praise in front of the gold F D M I letters" width="1280" height="960" fetchpriority="high">
   <div class="container hero-content">
-    <h1>Faith Demonstration Ministries International</h1>
-    <p>A prophetic and apostolic church at Adjen-Kotoku, Accra, led by Apostle Victor Annan.</p>
-    <div class="actions">
-      <a class="btn btn-gold" href="visit.html">Plan a visit</a>
-      <a class="text-link text-link-light" href="#this-week">Service times</a>
+    <img class="hero-crest" src="assets/fdmi-crest.jpg" alt="" width="76" height="76">
+    <p class="hero-place">Adjen-Kotoku, Accra</p>
+    <h1>Faith Demonstration<br>Ministries International</h1>
+    <p class="hero-sub">A prophetic and apostolic church led by Apostle Victor Annan. Come as you are.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold btn-lg" href="visit.html">Plan your visit</a>
+      <a class="btn btn-ghost btn-lg" href="#times">Service times</a>
     </div>
+  </div>
+  <p class="hero-foot">Join us on Sunday for Divine Service at 8:30 AM</p>
+</section>
+
+<section class="section" id="times">
+  <div class="container">
+    {sec_head("visit.html#times", "Service times", "Plan your visit")}
+    <ul class="week-grid">
+{home_times}
+    </ul>
+    <div class="sec-foot"><a class="btn btn-line" href="visit.html#times">Plan your visit</a></div>
   </div>
 </section>
 
-<section class="week" id="this-week" aria-label="Weekly services">
+<section class="section section-tint">
   <div class="container">
-  {times_list("times-band")}
-  </div>
-</section>
-
-<section class="section home-sec">
-  <div class="container">
-    <div class="sec-head">
-      <h2><a href="about.html">About the church</a></h2>
-      <a class="text-link" href="about.html">Our story and vision</a>
-    </div>
-    <div class="split">
+    {sec_head("about.html", "About the church", "About the church")}
+    <div class="split split-fill">
       <div class="split-text">
         <p class="lead">We are a family of believers who gather to worship, to hear the undiluted Word of God and to see it at work in everyday lives.</p>
         <p>Our vision is to raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation. Whether you have walked with Jesus for years or are only beginning to ask questions, there is a seat for you.</p>
+        <a class="btn btn-dark" href="about.html">Our vision and mission</a>
       </div>
-      <a class="split-photo" href="about.html" tabindex="-1" aria-hidden="true">
-        <img src="assets/photos/sunday-service.jpg" alt="" loading="lazy">
-      </a>
+      <a class="fill-photo" href="about.html" tabindex="-1" aria-hidden="true"><img src="assets/photos/sunday-service.jpg" alt="" loading="lazy" style="object-position:40% 50%"></a>
     </div>
   </div>
 </section>
@@ -384,102 +502,92 @@ pages["index.html"] = page("index.html", "Home",
       <li><img src="assets/natalie-annan.jpg" alt="" loading="lazy"></li>
 {chr(10).join(f'      <li><img src="{t[0]}" alt="" loading="lazy"></li>' for t in TEAM)}
     </ul>
-    <a class="text-link text-link-light" href="leaders.html">Meet our leaders</a>
+    <a class="btn btn-gold" href="leaders.html">Meet our leaders</a>
   </div>
 </section>
 
-<section class="section home-sec">
+<section class="section">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="ministries.html">Ministries</a></h2>
-      <a class="text-link" href="ministries.html">All ministries</a>
-    </div>
+    {sec_head("ministries.html", "Ministries", "Explore ministries")}
     <div class="tiles">
 {chr(10).join(f'      <a class="tile" href="ministries.html#{m[0]}"><img src="{m[2]}" alt="" loading="lazy" style="object-position:{m[3]}"><span>{m[1]}</span></a>' for m in MINISTRIES[:4])}
     </div>
+    <div class="sec-foot"><a class="btn btn-line" href="ministries.html">Explore ministries</a></div>
   </div>
 </section>
 
-<section class="section section-tint home-sec">
+<section class="section section-tint">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="sermons.html">Sermons</a></h2>
-      <a class="text-link" href="sermons.html">Watch and listen</a>
-    </div>
-    <div class="split split-photo-left">
-      <a class="split-photo" href="sermons.html" tabindex="-1" aria-hidden="true">
-        <img src="assets/photos/hands-raised.jpg" alt="" loading="lazy">
-      </a>
+    {sec_head("sermons.html", "Sermons", "Watch sermons")}
+    <div class="split split-fill split-photo-left">
+      <a class="fill-photo" href="sermons.html" tabindex="-1" aria-hidden="true"><img src="assets/photos/hands-raised.jpg" alt="" loading="lazy"></a>
       <div class="split-text">
         <p class="lead">The undiluted Word of God, preached every Sunday at Divine Service and taught every Tuesday at Study His Word.</p>
-        <p>Missed a service? Catch up on messages on our YouTube and Facebook pages.</p>
         <ul class="mini-times">
           <li><span>Sunday</span>Divine Service, 8:30 AM</li>
           <li><span>Tuesday</span>Study His Word, 6:00 PM</li>
         </ul>
+        <p>Missed a service? Catch up on our YouTube and Facebook pages.</p>
+        <a class="btn btn-dark" href="sermons.html">Watch and listen</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section home-sec">
+<section class="section">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="events.html">Events</a></h2>
-      <a class="text-link" href="events.html">All events</a>
-    </div>
-    {event_feature()}
+    {sec_head("events.html", "Events", "View events")}
+    {event_feature(mode="home")}
   </div>
 </section>
 
-<section class="section section-tint home-sec">
+<section class="section section-tint">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="announcements.html">Announcements</a></h2>
-      <a class="text-link" href="announcements.html">All announcements</a>
-    </div>
+    {sec_head("announcements.html", "Announcements", "Read announcements")}
     <div class="notice-cols">
 {chr(10).join(f"""      <a class="notice-col" href="announcements.html#{slug(a[1])}">
         <p class="notice-date">{a[0]}</p>
         <h3>{a[1]}</h3>
         <p>{SUMMARIES.get(a[1], strip_tags(a[2]))}</p>
+        <span class="notice-more">Read more</span>
       </a>""" for a in ANNOUNCEMENTS[:3])}
     </div>
+    <div class="sec-foot"><a class="btn btn-line" href="announcements.html">Read announcements</a></div>
   </div>
 </section>
 
-<section class="section home-sec">
+<section class="section">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="gallery.html">Gallery</a></h2>
-      <a class="text-link" href="gallery.html">See all photos</a>
-    </div>
+    {sec_head("gallery.html", "Gallery", "Open the gallery")}
     <div class="mosaic">
-{chr(10).join(f'      <a href="gallery.html" class="mosaic-{n}"><img src="assets/photos/{f}.jpg" alt="{c}" loading="lazy"></a>' for n, (f, c) in enumerate([("church-family", "The FDMI family together"), ("worship-team", "Leading the house in worship"), ("youth", "Our young people"), ("fellowship-in-white", "Fellowship in white"), ("child-dedication", "Child dedication")], 1))}
+{chr(10).join(f'      <a href="gallery.html" class="mosaic-{n}"><img src="assets/photos/{f}.jpg" alt="{c}" loading="lazy" style="object-position:{pos}"></a>' for n, (f, c, pos) in enumerate([("church-family", "The FDMI family together", "50% 40%"), ("white-service-1", "In white, before the Lord", "50% 50%"), ("youth", "Our young people", "50% 40%"), ("fellowship-in-white", "Fellowship in white", "50% 15%"), ("child-dedication", "Child dedication", "50% 25%")], 1))}
     </div>
+    <div class="sec-foot"><a class="btn btn-line" href="gallery.html">Open the gallery</a></div>
   </div>
 </section>
 
-<section class="section section-tint home-sec">
+<section class="section section-tint">
   <div class="container">
-    <div class="sec-head">
-      <h2><a href="visit.html">Plan a visit</a></h2>
-      <a class="text-link" href="visit.html">Directions and what to expect</a>
-    </div>
-    <div class="split split-even visit-teaser">
+    {sec_head("visit.html", "Plan a visit", "Plan your visit")}
+    <div class="split split-fill visit-teaser">
       <div class="split-text">
         <p class="address">{ADDRESS}</p>
-        <p>GhanaPostGPS <a href="{GPS_URL}">{GPS}</a><br>Call {phones_html()}</p>
+        <dl class="facts">
+          <div><dt>GhanaPostGPS</dt><dd><a href="{GPS_URL}">{GPS}</a></dd></div>
+          <div><dt>Phone</dt><dd>{phones_html()}</dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="{WA}">059 660 9093</a></dd></div>
+        </dl>
         <div class="actions">
-          <a class="btn btn-dark" href="visit.html">Plan a visit</a>
-          <a class="btn btn-line" href="{DIRECTIONS}">Get directions</a>
+          <a class="btn btn-dark" href="{DIRECTIONS}">Get directions</a>
+          <a class="btn btn-line" href="visit.html">What to expect</a>
         </div>
       </div>
       {MAP}
     </div>
   </div>
 </section>
-{LIGHTBOX}''')
+{LIGHTBOX}''', preload="assets/photos/worship-team.jpg")
+
 
 pages["about.html"] = page("about.html", "About the church",
     "Our vision is to raise an indigenous and self-supporting church and to demonstrate the love of God in our generation. Read FDMI's mission, focus and goals.",
@@ -600,7 +708,7 @@ min_rows = "\n".join(f'''    <article class="ministry" id="{mid}">
       <div class="ministry-text">
         <h2>{name}</h2>
         <p>{text}</p>
-        <a class="text-link" href="{wa(msg)}">Get involved</a>
+        <a class="btn btn-line btn-sm" href="{wa(msg)}">Get involved</a>
       </div>
     </article>''' for mid, name, img, pos, text, msg in MINISTRIES)
 
@@ -658,7 +766,7 @@ pages["events.html"] = page("events.html", "Events",
 
 <section class="section section-top-tight">
   <div class="container">
-    {event_feature(full=True)}
+    {event_feature()}
   </div>
 </section>
 
@@ -671,7 +779,7 @@ pages["events.html"] = page("events.html", "Events",
     {times_list()}
   </div>
 </section>
-{LIGHTBOX}''')
+{LIGHTBOX}''', extra_ld=[event_ld()])
 
 pages["announcements.html"] = page("announcements.html", "Announcements",
     "News and announcements from Faith Demonstration Ministries International, Adjen-Kotoku, Accra.",
@@ -749,3 +857,78 @@ out = Path(__file__).parent
 for name, html in pages.items():
     (out / name).write_text(html)
     print("wrote", name)
+
+# ---------------------------------------------------------------- SEO files
+from datetime import date
+today_iso = date.today().isoformat()
+priority = {"index.html": "1.0", "visit.html": "0.9", "events.html": "0.9", "about.html": "0.8", "sermons.html": "0.8"}
+urls = "\n".join(
+    f'''  <url>
+    <loc>{SITE}/{"" if n == "index.html" else n}</loc>
+    <lastmod>{today_iso}</lastmod>
+    <priority>{priority.get(n, "0.7")}</priority>
+  </url>''' for n in pages)
+(out / "sitemap.xml").write_text(f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls}
+</urlset>
+''')
+(out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+
+svc = "\n".join(f"- {d}: {m}, {t}" for _, d, m, t in SERVICES)
+(out / "llms.txt").write_text(f"""# {NAME} ({SHORT})
+
+> A prophetic and apostolic church in Adzen (Adjen-Kotoku), Ga West, Greater Accra, Ghana, led by Apostle Victor Annan.
+
+## Key facts
+- Name: {NAME} ({SHORT})
+- Leader: Apostle Victor Annan (also styled Bishop Victor Annan); Rev. Mrs Natalie Annan ministers alongside him
+- Address: Last stop, Adjen-Kotoku, next to Pick N Nikki School, Adzen, Ga West, Greater Accra, Ghana
+- GhanaPostGPS digital address: {GPS}
+- Coordinates: {LAT}, {LNG}
+- Phone: 059 660 9093, 020 171 3589 (WhatsApp: 059 660 9093)
+- Website: {SITE}/
+
+## Service times (Ghana time, GMT)
+{svc}
+
+## Vision
+To raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation.
+
+## Mission
+1. To preach the undiluted Word of God.
+2. Spiritual growth, numerical growth and financial growth.
+3. Equipping the saints of Christ (Ephesians 4:11-13).
+
+## Focus
+The sub-communities around the church, the youth and the children, training them with vocational skills.
+
+## Goals
+1. To reach the unreached.
+2. To help the less privileged.
+3. To help the aged.
+
+## Upcoming event
+- At His Feet, worship all night: Friday 4 December 2026 from 8:00 PM at the church premises.
+
+## Pages
+{chr(10).join(f"- [{CRUMB.get(n, 'Home')}]({SITE}/{'' if n == 'index.html' else n})" for n in pages)}
+""")
+
+# Link-preview cards: one per page, rendered by og/make_cards.js
+import json
+OG_CARDS = {
+    "index": ("Faith Demonstration Ministries International", "A prophetic and apostolic church in Adjen-Kotoku, Accra", "photos/worship-team.jpg", "50% 40%"),
+    "about": ("About the church", "To raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation", "photos/church-family.jpg", "50% 35%"),
+    "leaders": ("Leaders", "Apostle Victor Annan, Rev. Mrs Natalie Annan and the ministry team", "photos/consecration.jpg", "50% 25%"),
+    "ministries": ("Ministries", "Worship, prayer, youth, children, and outreach and welfare", "photos/youth-night.jpg", "50% 40%"),
+    "sermons": ("Sermons", "Divine Service on Sundays and Study His Word on Tuesdays", "photos/hands-raised.jpg", "50% 40%"),
+    "events": ("At His Feet: worship all night", "Friday 4 December 2026, from 8:00 PM", "at-his-feet-flyer.jpg", "50% 22%"),
+    "announcements": ("Announcements", "News for the FDMI church family", "photos/sunday-service.jpg", "40% 50%"),
+    "visit": ("Plan your visit", "Service times, directions and what to expect", "photos/white-service-1.jpg", "50% 45%"),
+    "gallery": ("Gallery", "Photos and video from life at FDMI", "photos/family-celebration.jpg", "50% 30%"),
+}
+(out / "og" ).mkdir(exist_ok=True)
+(out / "og" / "cards.json").write_text(json.dumps(
+    [{"name": k, "title": t, "sub": sub, "img": img, "pos": pos} for k, (t, sub, img, pos) in OG_CARDS.items()], indent=1))
+print("wrote sitemap.xml, robots.txt, llms.txt, og/cards.json")

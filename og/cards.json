@@ -1,0 +1,65 @@
+[
+ {
+  "name": "index",
+  "title": "Faith Demonstration Ministries International",
+  "sub": "A prophetic and apostolic church in Adjen-Kotoku, Accra",
+  "img": "photos/worship-team.jpg",
+  "pos": "50% 40%"
+ },
+ {
+  "name": "about",
+  "title": "About the church",
+  "sub": "To raise an indigenous and self-supporting church, and to demonstrate the love of God in our generation",
+  "img": "photos/church-family.jpg",
+  "pos": "50% 35%"
+ },
+ {
+  "name": "leaders",
+  "title": "Leaders",
+  "sub": "Apostle Victor Annan, Rev. Mrs Natalie Annan and the ministry team",
+  "img": "photos/consecration.jpg",
+  "pos": "50% 25%"
+ },
+ {
+  "name": "ministries",
+  "title": "Ministries",
+  "sub": "Worship, prayer, youth, children, and outreach and welfare",
+  "img": "photos/youth-night.jpg",
+  "pos": "50% 40%"
+ },
+ {
+  "name": "sermons",
+  "title": "Sermons",
+  "sub": "Divine Service on Sundays and Study His Word on Tuesdays",
+  "img": "photos/hands-raised.jpg",
+  "pos": "50% 40%"
+ },
+ {
+  "name": "events",
+  "title": "At His Feet: worship all night",
+  "sub": "Friday 4 December 2026, from 8:00 PM",
+  "img": "at-his-feet-flyer.jpg",
+  "pos": "50% 22%"
+ },
+ {
+  "name": "announcements",
+  "title": "Announcements",
+  "sub": "News for the FDMI church family",
+  "img": "photos/sunday-service.jpg",
+  "pos": "40% 50%"
+ },
+ {
+  "name": "visit",
+  "title": "Plan your visit",
+  "sub": "Service times, directions and what to expect",
+  "img": "photos/white-service-1.jpg",
+  "pos": "50% 45%"
+ },
+ {
+  "name": "gallery",
+  "title": "Gallery",
+  "sub": "Photos and video from life at FDMI",
+  "img": "photos/family-celebration.jpg",
+  "pos": "50% 30%"
+ }
+]

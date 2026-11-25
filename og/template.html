@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1200px;height:630px;overflow:hidden;background:#1d1915;color:#fff;font-family:"Schibsted Grotesk",sans-serif;display:grid;grid-template-columns:690px 510px;grid-template-rows:630px}
+.text{padding:56px 56px 48px 64px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:16px;font-weight:600;font-size:19px;line-height:1.25;color:#fff}
+.brand img{width:62px;height:62px;border-radius:50%;box-shadow:0 0 0 1px rgba(210,164,82,.7)}
+.mid{margin-top:auto;margin-bottom:auto;padding-top:20px}
+h1{font-family:Newsreader,serif;font-weight:500;font-size:var(--size,68px);line-height:1.02;letter-spacing:-.02em}
+.rule{width:64px;height:3px;background:#d2a452;margin:26px 0 22px}
+.sub{font-family:Newsreader,serif;font-style:italic;font-size:28px;line-height:1.3;color:rgba(255,255,255,.85);max-width:560px}
+.foot{display:flex;justify-content:space-between;gap:24px;font-size:18px;color:rgba(255,255,255,.7);border-top:1px solid rgba(255,255,255,.15);padding-top:20px}
+.foot b{color:#d2a452;font-weight:600}
+.photo{position:relative;height:630px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#1d1915 0%,rgba(29,25,21,0) 22%)}
+</style></head>
+<body>
+<div class="text">
+  <div class="brand"><img src="../assets/fdmi-crest.jpg" alt=""><span id="brand">Faith Demonstration<br>Ministries International</span></div>
+  <div class="mid">
+    <h1 id="title"></h1>
+    <div class="rule"></div>
+    <p class="sub" id="sub"></p>
+  </div>
+  <div class="foot"><span>Adjen-Kotoku, Accra &middot; <b>GW-0706-5202</b></span><span>Sundays 8:30 AM</span></div>
+</div>
+<div class="photo"><img id="photo" alt=""></div>
+</body></html>
