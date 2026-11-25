@@ -14,10 +14,10 @@ matchMedia("(min-width: 961px)").addEventListener("change", (e) => { if (e.match
 
 // ---------- Mark today's meeting (Ghana is on UTC) ----------
 const today = new Date().getUTCDay();
-$$(`.times li[data-day="${today}"]`).forEach((li) => li.classList.add("is-today"));
+$$(`.times li[data-day="${today}"], .times-table tr[data-day="${today}"]`).forEach((el) => el.classList.add("is-today"));
 
 // ---------- Event: time until it starts ----------
-$$(".event[data-start]").forEach((ev) => {
+$$("[data-start]").forEach((ev) => {
   const out = $("[data-countdown]", ev);
   const start = new Date(ev.dataset.start);
   const end = new Date(ev.dataset.end);
